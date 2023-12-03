@@ -4,36 +4,71 @@ import Link from 'next/link'
 import s from "./Header.module.scss"
 // images
 import Image from 'next/image'
+import img_like from "@/assets/imgs/header/like.png"
+import img_cart from "@/assets/imgs/header/cart.png"
+import img_search from "@/assets/imgs/header/search.png"
 
 const Header = () => {
   return (
-    <header>
+    <>
+      <header className={`${s.header} container`}>
         <Link href={"/"} className={s.Logo}>LOGO</Link>
-
-        <ul>
-          <li>
-            <Link href={"/"}></Link>
-          </li>
-          <li>
-            <Link href={"/"}></Link>
-          </li>
-          <li>
-            <Link href={"/"}></Link>
-          </li>
-          <li>
-            <Link href={"/"}></Link>
-          </li>
-        </ul>
+        
+        <nav>
+          <ul>
+            <li>
+              <Link href={"#"}>Каталог</Link>
+            </li>
+            <li>
+              <Link href={"#"}>Про нас</Link>
+            </li>
+            <li>
+              <Link href={"#"}>FAQ</Link>
+            </li>
+            <li>
+              <Link href={"#"}>Контакти</Link>
+            </li>
+          </ul>
+        </nav>
 
         <div>
-          {/* <Image src={} alt=""></Image>
-          <Image src={} alt=""></Image>
-          <Image src={} alt=""></Image> */}
-          <div>
+          <Image src={img_like} alt=""></Image>
+          <label htmlFor=""><Image src={img_search} alt=""></Image></label>
+          <Image src={img_cart} alt=""></Image>
+          <div className={s.btnHolder}>
             <button>Телефонувати</button>
           </div>
         </div>
-    </header>
+        
+        <div /*onClick={()=>{
+              burger ? setBurger(false) : setBurger(true)
+            }}*/ className={`${s.burger}`}>
+              <div></div>
+              <div></div>
+              <div></div>
+        </div>
+
+        <div className={`${s.mobileMenu}`}>
+            <nav className={s.mobileMenu__nav}>
+              <ul>
+                <li>
+                  <Link href={"#"}>Каталог</Link>
+                </li>
+                <li>
+                  <Link href={"#"}>Про нас</Link>
+                </li>
+                <li>
+                  <Link href={"#"}>FAQ</Link>
+                </li>
+                <li>
+                  <Link href={"#"}>Контакти</Link>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+      </header>
+    </>
   )
 }
 
