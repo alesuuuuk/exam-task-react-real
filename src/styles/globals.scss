@@ -5,3 +5,34 @@
     padding: 0;
     font-family: $--main-font;
 }
+
+.container{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+@media screen and (max-width: 1200px) {
+    .container{
+        margin-left: 80px;
+        margin-right: 80px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .container{
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .container{
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+}
+@media screen and (max-width: 700px) {
+    .container{
+        margin: 0;
+    }
+}
