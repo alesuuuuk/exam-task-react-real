@@ -7,8 +7,10 @@ import s from "@/styles/Home.module.scss";
 import { getProducts } from "@/modules/products";
 import { getComments } from "@/modules/comments";
 
+
 // components
 import Partners from '@/components/partners'
+
 
 const index = () => {
   // init
