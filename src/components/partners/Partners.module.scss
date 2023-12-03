@@ -1,0 +1,22 @@
+@import "/src//styles//variables.scss";
+
+.partners{
+    background-color: $--red;
+    display: flex;
+    color: #fff;
+    align-items: center;
+    justify-content: space-around;
+    height: auto;
+    padding: 12px 0;
+    flex-wrap: wrap;
+    
+    img{
+        margin: 0 7px;
+        @media (max-width:910px) {
+            width: 190px;
+        }
+        @media (max-width:400px) {
+            margin: 12px 7px;
+        }
+    }
+}

@@ -1,9 +1,13 @@
 import React from "react";
+import { useEffect } from "react";
 // style
 import s from "@/styles/Home.module.scss";
+// modules
 import { getProducts } from "@/modules/products";
 import { getComments } from "@/modules/comments";
-import { useEffect } from "react";
+
+// components
+import Partners from '@/components/partners'
 
 const index = () => {
   // init
@@ -13,10 +17,11 @@ const index = () => {
     console.log(prod.getData('products'))
     console.log(comment.getData('comments'))
   }, [])  
-
+  
   return (
-    <> 
-    
+    <>
+    Home page
+    <Link href={`/about`}>about</Link>
     </>
   );
 };
