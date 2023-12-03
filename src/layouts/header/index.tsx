@@ -2,6 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 // style
 import s from "./Header.module.scss"
+// images
+import Image from 'next/image'
 
 const Header = () => {
   return (
@@ -22,6 +24,15 @@ const Header = () => {
             <Link href={"/"}></Link>
           </li>
         </ul>
+
+        <div>
+          {/* <Image src={} alt=""></Image>
+          <Image src={} alt=""></Image>
+          <Image src={} alt=""></Image> */}
+          <div>
+            <button>Телефонувати</button>
+          </div>
+        </div>
     </header>
   )
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
+import Link from "next/link";
 // style
 import s from "@/styles/Home.module.scss";
 // modules
