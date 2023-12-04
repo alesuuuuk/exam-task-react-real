@@ -1,13 +1,85 @@
 @import "/src/styles/variables.scss";
-.history{
-    background-color: $--red;
-    h2{
 
-    }
-    p{
+.history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0px;
 
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: $--red;
+        font-weight: 600;
     }
-    button{
 
+    p {
+        text-align: center;
+        margin-bottom: 30px;
+        color: $--grey;
+        font-weight: 500;
     }
+
+    a {
+        text-align: center;
+        background-color: $--red;
+        padding: 16px 45px;
+        color: $--white;
+        border: none;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+    }
+}
+
+
+.name{
+    display: flex;
+    justify-content: space-between;
+    
+    flex-wrap: wrap;
+    .FAQ{
+        h2{
+            margin-bottom: 30px;
+        }
+        &__item{
+            padding: 28px 46px;
+            text-align: center;
+            display: flex;
+            gap: 30px;
+            box-shadow: 0px 0px 20px 0px $--box-shadow-color;
+            margin-bottom: 20px;
+        }
+    }
+
+    .form{
+        height: 100%;
+        h2{
+            margin-bottom: 30px;
+        }
+        form{
+            padding: 20px 36px;
+            box-shadow: 0px 0px 20px 0px $--box-shadow-color;
+            display: flex;
+            flex-direction: column;
+            input{
+                margin-bottom: 5px;
+                border: none;
+                border-bottom: 1px solid $--red;
+                margin-bottom: 20px;
+                padding: 4px 0;
+                height: 30px;
+            }
+            .form__input_comment{
+                top: 0;
+                left: 0;
+                padding: 30px 0;
+            }
+            .form__input_submit{
+
+            }
+        }
+        
+    }
+    
 }
