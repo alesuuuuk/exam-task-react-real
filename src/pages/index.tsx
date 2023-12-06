@@ -10,6 +10,7 @@ import { getComments } from "@/modules/comments";
 
 // components
 import Partners from '@/components/partners'
+import RewiewCard from "@/components/rewiewCard";
 
 
 const index = () => {
@@ -25,6 +26,7 @@ const index = () => {
     <>
     Home page
     <Link href={`/about`}>about</Link>
+    <RewiewCard/>
     </>
   );
 };

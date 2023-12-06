@@ -14,6 +14,7 @@ const About = () => {
   return (
     <>
       <Partners />
+      <Link href={`/`}>рщьу</Link>
       <section className={`${s.history} container`}>
         <h2>Наша історія</h2>
         <p>
@@ -57,10 +58,14 @@ const About = () => {
           <form>
             <input type="text" placeholder="Ім'я" />
             <input type="number" placeholder="Номер телефону" />
-            <input className={s.form__input_comment} type="text" placeholder="Коментар" />
+            <input type="text" className={s.form__input_comment} placeholder="Коментар" />
             <input className={s.form__input_submit} type="submit" value={`Отримати дзвінок`} />
           </form>
         </div>
+      </section>
+      <section className={`${s.reviews} container`}>
+        <h2>Відгуки</h2>
+
       </section>
     </>
   );
