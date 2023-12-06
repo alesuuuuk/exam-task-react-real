@@ -8,6 +8,7 @@ import img_like from "@/assets/imgs/header/like.png"
 import img_cart from "@/assets/imgs/header/cart.png"
 import img_search from "@/assets/imgs/header/search.png"
 
+import Footer from '../footer'
 const Header = () => {
   // states
   const [burgerStatus, setBurgerStatus] = useState<boolean>(false)
@@ -19,7 +20,7 @@ const Header = () => {
 
   return (
     <>
-      <header className={`${s.header} container`}>
+      <header className={`${s.header} ${burgerStatus ? '' : 'container'}`}>
         <Link href={"/"} className={s.Logo}>LOGO</Link>
         
         <nav>
