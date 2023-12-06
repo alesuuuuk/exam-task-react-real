@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap');
 @import "/src//styles//variables.scss";
 
 .header{
@@ -14,6 +15,8 @@
         color: $--red;
         font-size: 32px;
         font-weight: 700;
+
+        font-family: 'M PLUS 1p';
     }
 
    nav{
@@ -26,11 +29,19 @@
 
         width: 450px;
         li{
-            
+            transition: 0.2s;
             a{
                 text-decoration: none;
                 color: $--red;
                 font-weight: 500;
+            }
+        }
+
+        li:hover{
+            transition: 0.2s;
+
+            a{
+                color: $--red-hover;
             }
         }
     }
@@ -64,14 +75,22 @@
                 width: 140px;
                 height: 32px;
 
+                transition: 0.2s;
+
                 cursor: pointer;
+            }
+
+            button:hover{
+                transition: 0.2s;
+                font-weight: 600;
+                background-color: $--red-hover;
             }
         }
     }
     
     .burger{
-        height: 32px;
-        width: 42px;
+        height: 26px;
+        width: 38px;
         position: relative;
     
         cursor: pointer;
@@ -95,7 +114,7 @@
 
     .burger :nth-child(2){
         position: absolute;
-        top: calc(30px/2 - 2px/2);
+        top: calc(25.9px/2 - 2px/2);
         left: 0;
         width: 100%;
         height: 4px;
@@ -128,5 +147,100 @@
         transform: rotate(-45deg);
         bottom: calc(50% - 1px);
         transition: 0.5s;
+    }
+
+
+    .mobileMenu{
+        display: none;
+
+        position: fixed;
+        z-index: 999;
+
+        top: 0;
+
+        transform: translateX(350vh);
+        
+        transition: 0.3s;
+
+        width: 100%;
+        height: 100%;
+
+        background-color: #fff;
+    }
+
+    .mobileMenu.active{
+        transform: translateX(0);
+        
+        transition: 0.3s;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .header>nav{
+        display: none !important;
+    }
+
+    .header{
+        .btnHolder{
+            display: none !important;
+        }
+
+        .burger{
+            display: block;
+        }
+        
+        .btnHolder{
+            display: flex;
+        }
+
+        .mobileMenu{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .mobileBtnHolder{
+                display: block !important;
+
+                button{
+                    width: 200px;
+                    height: 40px;
+
+                    font-size: 24px;
+                }
+            }
+
+            &__nav{
+                ul{
+                    flex-direction: column;
+                    justify-content: center;
+                    
+                    gap: 14px;
+                    li{
+                        width: 100%;
+                        height: 100%;
+    
+                        
+                        a{
+                            display: flex;
+                            justify-content: center;
+                            
+                            font-size: 32px;
+    
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+    
+                    li:hover{
+                        background-color: $--red;
+    
+                        a{
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

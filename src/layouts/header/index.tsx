@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
 import Link from 'next/link'
 // style
 import s from "./Header.module.scss"
@@ -9,6 +9,14 @@ import img_cart from "@/assets/imgs/header/cart.png"
 import img_search from "@/assets/imgs/header/search.png"
 
 const Header = () => {
+  // states
+  const [burgerStatus, setBurgerStatus] = useState<boolean>(false)
+
+  // adding fixed class to body when burger is opened
+  useEffect(()=>{
+    burgerStatus ? document.body.classList.add('fixed') : document.body.classList.remove('fixed')
+  }, [burgerStatus])
+
   return (
     <>
       <header className={`${s.header} container`}>
@@ -32,23 +40,23 @@ const Header = () => {
         </nav>
 
         <div>
-          <Image src={img_like} alt=""></Image>
+          <Link href={'#'}><Image src={img_like} alt=""></Image></Link>
           <label htmlFor=""><Image src={img_search} alt=""></Image></label>
-          <Image src={img_cart} alt=""></Image>
+          <Link href={'#'}><Image src={img_cart} alt=""></Image></Link>
           <div className={s.btnHolder}>
             <button>Телефонувати</button>
           </div>
         </div>
         
-        <div /*onClick={()=>{
-              burger ? setBurger(false) : setBurger(true)
-            }}*/ className={`${s.burger}`}>
+        <div onClick={()=>{
+              burgerStatus ? setBurgerStatus(false) : setBurgerStatus(true)
+            }} className={`${s.burger} ${burgerStatus ? s.active : s.unactive}`}>
               <div></div>
               <div></div>
               <div></div>
         </div>
 
-        <div className={`${s.mobileMenu}`}>
+        <div className={`${s.mobileMenu} ${burgerStatus ? s.active : s.unactive}`}>
             <nav className={s.mobileMenu__nav}>
               <ul>
                 <li>
@@ -65,6 +73,9 @@ const Header = () => {
                 </li>
               </ul>
             </nav>
+            <div className={`${s.btnHolder} ${s.mobileBtnHolder}`}>
+                <button>Телефонувати</button>
+            </div>
           </div>
 
       </header>
