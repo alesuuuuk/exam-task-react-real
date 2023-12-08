@@ -116,5 +116,13 @@
 
 
 .reviews{
-    
+  h2{
+    margin-bottom: 13px;
+  }
+    &__items{
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      
+    }
 }

@@ -1,20 +1,36 @@
-import React from "react";
+// hooks
+import React, {useEffect, useState} from "react";
+
+// react tags
 import Image from "next/image";
 import Link from "next/link";
+
 // style
 import s from "./About.module.scss";
 
+//modules
+import { getComments } from "@/modules/comments";
+
+//interfaces 
+import { Com } from "@/interfaces";
 // components
 import Partners from "@/components/partners";
+import RewiewCard from "@/components/rewiewCard";
 
 // imgs
 import ARROW_FAQ_IMG from "@/assets/imgs/FAQ/FAQ_ARROW.svg";
 
-const About = () => {
+interface Props{
+  rewiews: Com[];
+}
+ 
+const About = ({rewiews}: Props) => {
+  // rews == rewiews 
+  const [rews, setRewiews] = useState<Com[] | null>(rewiews)
   return (
     <>
       <Partners />
-      <Link href={`/`}>рщьу</Link>
+      <Link href={`/`}>home</Link>
       <section className={`${s.history} container`}>
         <h2>Наша історія</h2>
         <p>
@@ -23,7 +39,7 @@ const About = () => {
           assumenda in animi ex incidunt, non ducimus. Facilis doloremque
           ratione quod atque?
         </p>
-        <Link href={`#`}>Дізнатися більше</Link>
+        <Link target="_blank" href={`https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=3s`}>Дізнатися більше</Link>
       </section>
       <section className={`${s.name} container`}>
         <div className={s.FAQ}>
@@ -65,10 +81,27 @@ const About = () => {
       </section>
       <section className={`${s.reviews} container`}>
         <h2>Відгуки</h2>
-
+        <div className={s.reviews__items}>
+        {
+          rews ? (
+            rews.map((rewiew: Com)=>{
+              return <RewiewCard/>
+            })
+          ) : (
+            <div className={s.rewiew__load}> Rewiews are loading...</div>
+          ) 
+          }
+        </div>
       </section>
     </>
   );
 };
+
+// SSR get rewiews
+export async function getServerComments() {
+  const com = new getComments();
+  const data = await com.getData(`comments`)
+  return { props: { rewiews: data}}
+}
 
 export default About;

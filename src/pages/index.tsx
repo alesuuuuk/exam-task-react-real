@@ -17,16 +17,15 @@ const index = () => {
   // init
   const prod = new getProducts();
   const comment = new getComments();
-  // useEffect(()=>{
-  //   console.log(prod.getData('products'))
-  //   console.log(comment.getData('comments'))
-  // }, [])  
-  
+  // destcu
+ 
+  console.log(comment.getData('comments'))
   return (
     <>
     Home page
     <Link href={`/about`}>about</Link>
     <RewiewCard/>
+    
     </>
   );
 };
