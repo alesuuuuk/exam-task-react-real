@@ -12,23 +12,19 @@ import Partners from '@/components/partners'
 import Image from "next/image";
 import img_hero from "@/assets/imgs/home/hero.png"
 import img_search from "@/assets/imgs/header/search.png"
+// interfaces
+import { Prod } from "@/interfaces";
 
-const index = () => {
-  // init
-  const prod = new getProducts();
+interface Props{
+  prods: Prod[],
+  ctgs: string[]
+}
+
+const Home = ({prods, ctgs}: Props) => {
   // states
   // State to see when input is focused
   const [inputFocusStatus, setInputFocusStatus] = useState<boolean>(false)
   
-  // States for categories and products
-  const [productsArray, setProductsArray] = useState<[] | null>([])
-  const [categoriesArray, setCategoriesArray] = useState<[] | null>([])
-
-  useEffect(()=>{
-    prod.getData('products/categories').then((data: [])=>{return setCategoriesArray(data)})
-    prod.getData('products').then((data: [])=>{return setProductsArray(data)})
-  }, [])
-
   // counter to limit categories
   let counter = 0
   return (
@@ -55,9 +51,9 @@ const index = () => {
         <section className={s.categoriesContainer}>
           <div className={s.categoriesContainer__title}>Категорії</div>
           <div className={s.categoriesContainer__categories}>
-            {categoriesArray && categoriesArray?.map((category)=>{
+            {ctgs && ctgs?.map((category)=>{
               counter += 1
-              const image = productsArray?.find(product => product.category === category)
+              const image = prods?.find(product => product.category === category)
               if (image && counter <= 9){
                 return(<div className={s.categoriesContainer__categories_category} key={image.id}>
                   <div>
@@ -77,5 +73,15 @@ const index = () => {
     </>
   );
 };
+// SSR
+export async function getServerSideProps() {
+  // init
+  const prod = new getProducts();
+  
+  const categories = await prod.getData('products/categories').then((data: [])=>{return data})
+  const products = await prod.getData('products').then((data: [])=>{return data})
+  
+  return { props: { prods: products, ctgs: categories } }
+}
 
-export default index;
+export default Home;
