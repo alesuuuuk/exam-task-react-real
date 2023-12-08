@@ -66,6 +66,11 @@
             cursor: pointer;
         }
 
+        a{
+            display: flex;
+            align-items: center;
+        }
+
         .btnHolder{
             button{
                 background-color: $--red;
