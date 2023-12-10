@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+// import { useEffect } from "react";
 import Link from "next/link";
 // style
 import s from "@/styles/Home.module.scss";
@@ -14,6 +15,9 @@ import img_hero from "@/assets/imgs/home/hero.png"
 import img_search from "@/assets/imgs/header/search.png"
 // interfaces
 import { Prod } from "@/interfaces";
+
+import RewiewCard from "@/components/rewiewCard";
+import productCard from "@/components/productCard";
 
 interface Props{
   prods: Prod[],
@@ -71,8 +75,9 @@ const Home = ({prods, ctgs}: Props) => {
         </section>
       </div>
     </>
-  );
-};
+  )
+}
+
 // SSR
 export async function getServerSideProps() {
   // init
@@ -83,5 +88,6 @@ export async function getServerSideProps() {
   
   return { props: { prods: products, ctgs: categories } }
 }
+
 
 export default Home;
