@@ -51,6 +51,7 @@ const Home = ({prods, ctgs}: Props) => {
         </form>
       </div>
 
+      {/* @ts-ignore */}
       <PopularProducts key={1} data={prods}/>
 
       <div className={`${s.container} container`}>

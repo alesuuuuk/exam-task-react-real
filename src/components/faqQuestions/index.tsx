@@ -12,7 +12,7 @@ interface Props{
     desc: string
 }
 
-const faqQuestions = (props: Props) => {
+const FaqQuestions = (props: Props) => {
     // state
 
     // to see if the desc is opened or closed
@@ -40,4 +40,4 @@ const faqQuestions = (props: Props) => {
     )
 }
 
-export default faqQuestions
+export default FaqQuestions

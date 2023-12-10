@@ -16,7 +16,8 @@ const PopularProducts = (props: Prod) => {
       <>
           <div className={s.title}>Популярні товари</div>
           <div className={`${s.productsContainer} container`}>
-              {props.data.map((e)=>{
+              {// @ts-ignore
+              props.data.map((e)=>{
                 counter += 1
 
                 if (counter <= 4){
