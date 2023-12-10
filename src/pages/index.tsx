@@ -7,6 +7,12 @@ import s from "@/styles/Home.module.scss";
 // modules
 import { getProducts } from "@/modules/products";
 import { getComments } from "@/modules/comments";
+<<<<<<< HEAD
+=======
+
+import testImg from "@/assets/icons/productCard/test.png"
+
+>>>>>>> 7b1f08121c68a81ae4725629371378382dbad68e
 // components
 import Partners from '@/components/partners'
 // images
@@ -17,6 +23,7 @@ import img_search from "@/assets/imgs/header/search.png"
 import { Prod } from "@/interfaces";
 
 import RewiewCard from "@/components/rewiewCard";
+<<<<<<< HEAD
 import productCard from "@/components/productCard";
 
 interface Props{
@@ -46,6 +53,35 @@ const Home = ({prods, ctgs}: Props) => {
               <Image className={inputFocusStatus ? s.active : ''} src={img_search} alt=""></Image>
             </div>
           </div>
+=======
+import ProductCard from "@/components/productCard";
+
+const data = [
+  {id: 1, category: "kuhnya", title: "test1 dasjlndaihadjhailsdasdas", description: `alalalalalalalalalalalalalaldsadfsajaswl aifhdsaklfhds`, price: 123, image:  testImg},
+  
+]
+const index = () => {
+  // init
+  const prod = new getProducts();
+  const comment = new getComments();
+ 
+ 
+  console.log(comment.getData('comments'))
+  console.log(prod.getData('products'))
+  return (
+    <>
+    Home page
+    <Link href={`/about`}>about</Link>
+    {/* <RewiewCard/> */}
+
+    { data.map((e: any) =>{
+      return <ProductCard key={e.id} data={e} />
+    })}
+    
+    </>
+  );
+};
+>>>>>>> 7b1f08121c68a81ae4725629371378382dbad68e
 
         </form>
 

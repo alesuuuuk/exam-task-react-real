@@ -16,7 +16,11 @@ import testImg from "@/assets/icons/productCard/test.png";
 
 const ProductCard = (props: Prod) => {
   // destructure props
+<<<<<<< HEAD
   const {title, image, description, price, category} = props;
+=======
+  const {title, image, description, price, category} = props.data;
+>>>>>>> 7b1f08121c68a81ae4725629371378382dbad68e
   return (
     <>
       <div className={s.card}>
@@ -48,4 +52,8 @@ const ProductCard = (props: Prod) => {
   );
 };
 
+<<<<<<< HEAD
 export default ProductCard;
+=======
+export default ProductCard;
+>>>>>>> 7b1f08121c68a81ae4725629371378382dbad68e
