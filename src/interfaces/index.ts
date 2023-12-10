@@ -1,20 +1,21 @@
 export interface Prod {
-  category: string;
-  description: string;
-  id: number;
-  image: string;
-  price: number;
-  rating: {
-    rate: number;
-    count: number;
+  key: number;
+  data: {
+    category: string;
+    description: string;
+    image: string;
+    price: number;
+    rating: {
+      rate: number;
+      count: number;
+    };
+    title: string;
   };
-  title: string;
 }
 
 export interface Com {
-    body: string;
-    email: string;
-    id: number;
-    postID: number;
-  };
-
+  body: string;
+  email: string;
+  id: number;
+  postID: number;
+}

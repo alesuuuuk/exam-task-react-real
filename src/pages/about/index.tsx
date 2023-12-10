@@ -82,15 +82,14 @@ const About = ({rewiews}: Props) => {
       <section className={`${s.reviews} container`}>
         <h2>Відгуки</h2>
         <div className={s.reviews__items}>
-        {
+        {/* {
           rews ? (
             rews.map((rewiew: Com)=>{
               return <RewiewCard/>
             })
           ) : (
             <div className={s.rewiew__load}> Rewiews are loading...</div>
-          ) 
-          }
+          )}  */}
         </div>
       </section>
     </>
@@ -98,7 +97,7 @@ const About = ({rewiews}: Props) => {
 };
 
 // SSR get rewiews
-export async function getServerComments() {
+export async function getServerSideComments() {
   const com = new getComments();
   const data = await com.getData(`comments`)
   return { props: { rewiews: data}}

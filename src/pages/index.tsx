@@ -7,24 +7,34 @@ import s from "@/styles/Home.module.scss";
 import { getProducts } from "@/modules/products";
 import { getComments } from "@/modules/comments";
 
+import testImg from "@/assets/icons/productCard/test.png"
 
 // components
 import Partners from '@/components/partners'
 import RewiewCard from "@/components/rewiewCard";
+import ProductCard from "@/components/productCard";
 
-
+const data = [
+  {id: 1, category: "kuhnya", title: "test1 dasjlndaihadjhailsdasdas", description: `alalalalalalalalalalalalalaldsadfsajaswl aifhdsaklfhds`, price: 123, image:  testImg},
+  
+]
 const index = () => {
   // init
   const prod = new getProducts();
   const comment = new getComments();
-  // destcu
+ 
  
   console.log(comment.getData('comments'))
+  console.log(prod.getData('products'))
   return (
     <>
     Home page
     <Link href={`/about`}>about</Link>
-    <RewiewCard/>
+    {/* <RewiewCard/> */}
+
+    { data.map((e: any) =>{
+      return <ProductCard key={e.id} data={e} />
+    })}
     
     </>
   );
