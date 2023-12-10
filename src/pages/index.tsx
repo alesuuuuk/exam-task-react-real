@@ -7,27 +7,21 @@ import s from "@/styles/Home.module.scss";
 // modules
 import { getProducts } from "@/modules/products";
 import { getComments } from "@/modules/comments";
-<<<<<<< HEAD
-=======
-
-import testImg from "@/assets/icons/productCard/test.png"
-
->>>>>>> 7b1f08121c68a81ae4725629371378382dbad68e
 // components
 import Partners from '@/components/partners'
+import PopularProducts from "@/components/popularProducts";
 // images
 import Image from "next/image";
 import img_hero from "@/assets/imgs/home/hero.png"
 import img_search from "@/assets/imgs/header/search.png"
 // interfaces
-import { Prod } from "@/interfaces";
+import { ProdNoProps } from "@/interfaces";
 
 import RewiewCard from "@/components/rewiewCard";
-<<<<<<< HEAD
-import productCard from "@/components/productCard";
+import ProductCard from "@/components/productCard";
 
 interface Props{
-  prods: Prod[],
+  prods: ProdNoProps[],
   ctgs: string[]
 }
 
@@ -53,39 +47,11 @@ const Home = ({prods, ctgs}: Props) => {
               <Image className={inputFocusStatus ? s.active : ''} src={img_search} alt=""></Image>
             </div>
           </div>
-=======
-import ProductCard from "@/components/productCard";
-
-const data = [
-  {id: 1, category: "kuhnya", title: "test1 dasjlndaihadjhailsdasdas", description: `alalalalalalalalalalalalalaldsadfsajaswl aifhdsaklfhds`, price: 123, image:  testImg},
-  
-]
-const index = () => {
-  // init
-  const prod = new getProducts();
-  const comment = new getComments();
- 
- 
-  console.log(comment.getData('comments'))
-  console.log(prod.getData('products'))
-  return (
-    <>
-    Home page
-    <Link href={`/about`}>about</Link>
-    {/* <RewiewCard/> */}
-
-    { data.map((e: any) =>{
-      return <ProductCard key={e.id} data={e} />
-    })}
-    
-    </>
-  );
-};
->>>>>>> 7b1f08121c68a81ae4725629371378382dbad68e
 
         </form>
-
       </div>
+
+      <PopularProducts key={1} data={prods}/>
 
       <div className={`${s.container} container`}>
         <section className={s.categoriesContainer}>
@@ -97,10 +63,10 @@ const index = () => {
               if (image && counter <= 9){
                 return(<div className={s.categoriesContainer__categories_category} key={image.id}>
                   <div>
-                    <Image src={image.image} alt="" width={200} height={200}></Image>
+                    <Image src={image.image} alt="" width={200} height={250}></Image>
                     <Link href={'/'}><button>Переглянути</button></Link>
                   </div>
-                  <div>{category}</div>
+                  <div className={s.categoriesContainer__categories_category_title}>{category}</div>
                   </div>)
               }
             })}

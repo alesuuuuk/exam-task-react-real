@@ -26,7 +26,7 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <Link href={"#"}>Каталог</Link>
+              <Link href={"/catalog"}>Каталог</Link>
             </li>
             <li>
               <Link href={"#"}>Про нас</Link>
@@ -61,7 +61,7 @@ const Header = () => {
             <nav className={s.mobileMenu__nav}>
               <ul>
                 <li>
-                  <Link onClick={()=>{setBurgerStatus(false)}} href={"#"}>Каталог</Link>
+                  <Link onClick={()=>{setBurgerStatus(false)}} href={"/catalog"}>Каталог</Link>
                 </li>
                 <li>
                   <Link onClick={()=>{setBurgerStatus(false)}} href={"#"}>Про нас</Link>

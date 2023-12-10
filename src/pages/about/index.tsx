@@ -16,17 +16,24 @@ import { Com } from "@/interfaces";
 // components
 import Partners from "@/components/partners";
 import RewiewCard from "@/components/rewiewCard";
-
-// imgs
-import ARROW_FAQ_IMG from "@/assets/imgs/FAQ/FAQ_ARROW.svg";
+import FaqQuestions from "@/components/faqQuestions";
 
 interface Props{
   rewiews: Com[];
 }
- 
 const About = ({rewiews}: Props) => {
   // rews == rewiews 
   const [rews, setRewiews] = useState<Com[] | null>(rewiews)
+  // FAQ
+  const [FAQ, setFAQ] = useState<any>(null)
+
+  // FAQ titles and descriptions array
+  const FAQ_array = [
+    {title: "Lorem ipsum dolor sit amet consectetur. Sed amet viverra cras?", desc: "lorem1", id: 1},
+    {title: "Lorem ipsum dolor sit amet consectetur. Sed amet viverra cras?", desc: "lorem2", id: 2},
+    {title: "Lorem ipsum dolor sit amet consectetur. Sed amet viverra cras?", desc: "lorem3", id: 3},
+    {title: "Lorem ipsum dolor sit amet consectetur. Sed amet viverra cras?", desc: "lorem4", id: 4},
+  ]
   return (
     <>
       <Partners />
@@ -44,29 +51,12 @@ const About = ({rewiews}: Props) => {
       <section className={`${s.name} container`}>
         <div className={s.FAQ}>
           <h2>Часті запитання</h2>
-          <div className={s.FAQ__item}>
-            <p>
-              Lorem ipsum dolor sit amet consectetur. Sed amet viverra cras?
-            </p>
-            <Image src={ARROW_FAQ_IMG} alt="arrow_img" />
-          </div>
-          <div className={s.FAQ__item}>
-            <p>
-              Lorem ipsum dolor sit amet consectetur. Sed amet viverra cras?
-            </p>
-            <Image src={ARROW_FAQ_IMG} alt="arrow_img" />
-          </div>
-          <div className={s.FAQ__item}>
-            <p>
-              Lorem ipsum dolor sit amet consectetur. Sed amet viverra cras?
-            </p>
-            <Image src={ARROW_FAQ_IMG} alt="arrow_img" />
-          </div>
-          <div className={s.FAQ__item}>
-            <p>
-              Lorem ipsum dolor sit amet consectetur. Sed amet viverra cras?
-            </p>
-            <Image src={ARROW_FAQ_IMG} alt="arrow_img" />
+          <div>
+            {FAQ_array.map((e)=>{
+              return(
+                <FaqQuestions key={e.id} title={e.title} desc={e.desc}/>
+              )
+            })}
           </div>
         </div>
         <div className={s.form}>
