@@ -20,11 +20,12 @@ export const cartSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state.items));
 
       // products with qty
-      let qtyCart = localStorage.getItem('qtyCart')
+      let qtyCart: any = localStorage.getItem('qtyCart')
       qtyCart ? qtyCart = JSON.parse(qtyCart) : qtyCart = []
       
       if (qtyCart.length > 0){
-        let index = qtyCart.findIndex(product => product.id == action.payload)
+        let index: number = qtyCart.findIndex((product: {id: number, qty: number}) => product.id == action.payload)
+        console.log("INDEX_____", index)
         if (index != -1){
           qtyCart[index].qty++
         }else{
