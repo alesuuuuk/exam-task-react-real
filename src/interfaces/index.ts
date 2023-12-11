@@ -1,19 +1,38 @@
-export interface Prod{
+export interface Prod {
+  key: number;
+  data: {
     category: string;
     description: string;
-    id: number;
     image: string;
     price: number;
+    id: number;
     rating: {
-        rate: number;
-        count: number;
-    }
+      rate: number;
+      count: number;
+    };
     title: string;
+  };
 }
 
-export interface Com{
-    body: string,
+export interface Com {
+  key: number;
+  data: {
+    body: string;
     email: string;
-    id: number;
     postID: number;
+  };
+  id: number;
+}
+
+export interface ProdNoProps {
+  id: number;
+  category: string;
+  description: string;
+  image: string;
+  price: number;
+  rating: {
+    rate: number;
+    count: number;
+  };
+  title: string;
 }

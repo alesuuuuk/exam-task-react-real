@@ -1,0 +1,146 @@
+@import "/src/styles/variables.scss";
+
+.card{
+    padding: 10px ;
+    width: 20%;
+    height: 500px;
+    background: #FFF;
+    box-shadow: 0px 0px 20px 0px $--box-shadow-color;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: relative;
+    &__title:hover{
+        h3{
+            color: $--red;
+        }
+    }
+
+    &__author{
+        text-decoration: none;
+        color: $--red;
+        font-size: 15px;
+    }
+
+    &__top{
+        display: flex;
+        justify-content: space-between;
+        &_new{
+            background-color: $--red;
+            text-align: center;
+            color: $--white;
+            display: flex;
+            padding: 5px 15px;
+            font-size: 14px;
+        }
+        &_heart{
+            cursor: pointer;
+        }
+    }
+
+    &__img{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-decoration: none;
+
+            width: 100%;
+            max-width: 200px;
+            img{
+                transition: 0.3s;
+
+                width: 100%;
+                height: 20%;
+            }
+            img:hover{
+                transition: 0.3s;
+                transform: scale(102%);
+            }
+            cursor: pointer;
+        }
+    }
+
+    &__about{
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+
+        &_category{
+            font-weight: 600;
+            color: $--grey;
+        }
+    }
+
+    &__botton{
+
+        width: 95%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &_price{
+            p{
+                color: $--red;
+                
+            }
+        }
+        &_addCart{
+            background-color: $--red;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+
+            cursor: pointer;
+    
+        }
+    }
+    
+}
+
+@media screen and (max-width: 1000px) {
+        .card{
+            &__botton{
+                &_addCart{
+                    display: none;
+                }
+            }
+        }
+}
+
+@media screen and (max-width: 900px) {
+    .card{
+        width: 170px !important;
+        height: 500px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .card{
+        width: 170px !important;
+        height: 420px;
+
+        &__title{
+            font-size: 12px;
+        }
+        &__author{
+            font-size: 12px;
+        }
+        &__about{
+            &_category{
+                font-size: 12px;
+            }
+        }
+
+    }
+}

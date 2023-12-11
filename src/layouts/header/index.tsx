@@ -26,13 +26,13 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <Link href={"#"}>Каталог</Link>
+              <Link href={"/catalog"}>Каталог</Link>
             </li>
             <li>
               <Link href={"#"}>Про нас</Link>
             </li>
             <li>
-              <Link href={"#"}>FAQ</Link>
+              <Link href={"/about"}>FAQ</Link>
             </li>
             <li>
               <Link href={"#"}>Контакти</Link>
@@ -61,21 +61,21 @@ const Header = () => {
             <nav className={s.mobileMenu__nav}>
               <ul>
                 <li>
-                  <Link href={"#"}>Каталог</Link>
+                  <Link onClick={()=>{setBurgerStatus(false)}} href={"/catalog"}>Каталог</Link>
                 </li>
                 <li>
-                  <Link href={"#"}>Про нас</Link>
+                  <Link onClick={()=>{setBurgerStatus(false)}} href={"#"}>Про нас</Link>
                 </li>
                 <li>
-                  <Link href={"#"}>FAQ</Link>
+                  <Link onClick={()=>{setBurgerStatus(false)}} href={"/about"}>FAQ</Link>
                 </li>
                 <li>
-                  <Link href={"#"}>Контакти</Link>
+                  <Link onClick={()=>{setBurgerStatus(false)}} href={"#"}>Контакти</Link>
                 </li>
               </ul>
             </nav>
             <div className={`${s.btnHolder} ${s.mobileBtnHolder}`}>
-                <button>Телефонувати</button>
+                <button onClick={()=>{setBurgerStatus(false)}}>Телефонувати</button>
             </div>
           </div>
 
