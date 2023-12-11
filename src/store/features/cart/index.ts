@@ -18,7 +18,30 @@ export const cartSlice = createSlice({
       console.log(state.items)
       // set to LS
       localStorage.setItem("cart", JSON.stringify(state.items));
+
+      // products with qty
+      let qtyCart = localStorage.getItem('qtyCart')
+      qtyCart ? qtyCart = JSON.parse(qtyCart) : qtyCart = []
+      
+      if (qtyCart.length > 0){
+        let index = qtyCart.findIndex(product => product.id == action.payload)
+        if (index != -1){
+          qtyCart[index].qty++
+        }else{
+          qtyCart.push(
+            {id: action.payload, qty: 1}
+          )
+        }
+
+      }else{
+        qtyCart.push(
+          {id: action.payload, qty: 1}
+        )
+      }
+
+      localStorage.setItem('qtyCart', JSON.stringify(qtyCart))
     },
+
     removeItemFromCart: (state, action: PayloadAction<number>) => {
       const productID = action.payload;
       // check if exist product ID in state

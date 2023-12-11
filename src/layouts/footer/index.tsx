@@ -1,5 +1,10 @@
-import React from 'react'
+import React, { use } from 'react'
+import { useEffect } from 'react'
 import Link from 'next/link'
+// redux
+import { useDispatch } from "react-redux"
+import { addDataFromLS } from "@/store/features/cart"
+import { addDataFromLS as addDataFromLSFav } from "@/store/features/favourite"
 // style
 import s from "./Footer.module.scss"
 // images
@@ -12,6 +17,25 @@ import img_telegram from "@/assets/imgs/footer/telegram.png"
 import img_instagram from "@/assets/imgs/footer/instagram.png"
 
 const Footer = () => {
+  const dispatch = useDispatch()
+  // redux LS
+  useEffect(() => {
+    // get data from ls
+    const CART_ITEMS = localStorage.getItem("cart");
+    const FAV_ITEMS = localStorage.getItem("favourites")
+
+    CART_ITEMS && CART_ITEMS.length > 0
+      ? dispatch(addDataFromLS(JSON.parse(CART_ITEMS)))
+      : null;
+    
+    FAV_ITEMS && FAV_ITEMS.length > 0
+      ? dispatch(addDataFromLSFav(JSON.parse(FAV_ITEMS)))
+      : null;
+
+    // localStorage.removeItem('cart')
+    // localStorage.removeItem('qtyCart')
+  });
+
   return (
     <footer className={`${s.footer}`}>
         <div className={`${s.container} container`}>
