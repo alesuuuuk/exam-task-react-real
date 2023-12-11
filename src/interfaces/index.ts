@@ -5,6 +5,7 @@ export interface Prod {
     description: string;
     image: string;
     price: number;
+    id: number;
     rating: {
       rate: number;
       count: number;
@@ -14,14 +15,17 @@ export interface Prod {
 }
 
 export interface Com {
-  body: string;
-  email: string;
+  key: number;
+  data: {
+    body: string;
+    email: string;
+    postID: number;
+  };
   id: number;
-  postID: number;
 }
 
 export interface ProdNoProps {
-  id: number,
+  id: number;
   category: string;
   description: string;
   image: string;

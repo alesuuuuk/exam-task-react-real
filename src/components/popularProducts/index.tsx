@@ -9,6 +9,7 @@ import ProductCard from '../productCard'
 import { getProducts } from '@/modules/products'
 
 
+
 const PopularProducts = (props: Prod) => {
 
     let counter = 0

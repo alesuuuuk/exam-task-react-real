@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useState } from "react";
-// import { useEffect } from "react";
 import Link from "next/link";
 // style
 import s from "@/styles/Home.module.scss";
@@ -16,7 +15,7 @@ import img_hero from "@/assets/imgs/home/hero.png"
 import img_search from "@/assets/imgs/header/search.png"
 // interfaces
 import { ProdNoProps } from "@/interfaces";
-
+// components
 import RewiewCard from "@/components/rewiewCard";
 import ProductCard from "@/components/productCard";
 
@@ -50,7 +49,6 @@ const Home = ({prods, ctgs}: Props) => {
 
         </form>
       </div>
-
       {/* @ts-ignore */}
       <PopularProducts key={1} data={prods}/>
 
