@@ -28,7 +28,7 @@ export const cartSlice = createSlice({
         state.items = state.items.filter((item) => item != productID);
         localStorage.setItem("favourites", JSON.stringify(state.items));
       } else {
-        alert("Product doesn't exist in cart!");
+        alert("Product doesn't exist in favourites!");
       }
     },
     addDataFromLS: (state, action: PayloadAction<[]>) => {
