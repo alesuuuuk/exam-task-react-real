@@ -37,7 +37,6 @@ const About = ({rewiews}: Props) => {
   return (
     <>
       <Partners />
-      <Link href={`/`}>home</Link>
       <section className={`${s.history} container`}>
         <h2>Наша історія</h2>
         <p>

@@ -31,9 +31,6 @@ const Footer = () => {
     FAV_ITEMS && FAV_ITEMS.length > 0
       ? dispatch(addDataFromLSFav(JSON.parse(FAV_ITEMS)))
       : null;
-
-    // localStorage.removeItem('cart')
-    // localStorage.removeItem('qtyCart')
   });
 
   return (
