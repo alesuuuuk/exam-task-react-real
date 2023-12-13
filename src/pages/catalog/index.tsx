@@ -1,4 +1,5 @@
 import React from 'react'
+
 import {useState, useEffect} from 'react'
 import { useRouter } from 'next/router'
 // styles
@@ -28,10 +29,12 @@ const Catalog = ({ prods }: Props) => {
   // init
   const router = useRouter()
 
+  // let testA = [{id: 1}, {id: 2},{id: 3},{id: 4},{id: 5},{id: 6},{id: 7},{id: 8},{id: 9},{id: 10},{id: 11},{id: 12},{id: 13},{id: 14},{id: 15},{id: 16},{id: 17},{id: 18},{id: 19},{id: 20},{id: 21},{id: 22}]
+
   // functions
   function generatePgnPages() {
     const elements = []
-  
+
     for (let i = 1; i <= pgnPages; i++) {
       elements.push(<button className={s.pagination__container_btn} onClick={()=>{
         router.replace({
@@ -41,10 +44,10 @@ const Catalog = ({ prods }: Props) => {
         setCurrentPage(i)
       }} key={i}>{i}</button>)
     }
-  
+    
     return <div className={s.items__container_pagination_btn}>{elements}</div>
   }
-  
+
   // onLoad
   useEffect(()=>{
     // checking pagination page
@@ -75,6 +78,33 @@ const Catalog = ({ prods }: Props) => {
     setPagProducts(pagArray)
   }, [])
 
+  // onChange
+  // useEffect(()=>{
+  //   pagArray = []
+  //   pagPagesArray = []
+  //   products.map((e)=>{
+  //     if (counter < 9){
+  //       pagPagesArray.push(e)
+  //       // console.log(e.id)
+  //     }else{
+  //       counter = 0
+  //       pagArray.push(pagPagesArray)
+  //       //console.log(pagPagesArray)
+  //       pagPagesArray = []
+  //     }
+  //     counter++
+  //   })
+  //   if (pagPagesArray.length > 0 && (pagArray[pagArray.length-1].length + pagPagesArray.length) <= 9){
+  //     pagPagesArray.map((e)=>{
+  //       pagArray[pagArray.length-1].push(e)
+  //     })
+  //   }else if (pagPagesArray.length > 0){
+  //     pagArray.push(pagPagesArray)
+  //   }
+  //   setPagProducts(pagArray)
+  //   console.log(pagProducts)
+  // }, [products])
+
   return (
     <>
         <div>
@@ -83,7 +113,7 @@ const Catalog = ({ prods }: Props) => {
           <div></div>
           <div></div>
         </div>
-        
+
         <div className={s.items}>
           <div className={s.items__container}>
             <div className={s.items__container_products}>
@@ -97,15 +127,19 @@ const Catalog = ({ prods }: Props) => {
               {generatePgnPages()}
             </div>
           </div>
-)}
+          <div></div>
+        </div>
+    </>
+  )}
 
 // SSR
 export async function getServerSideProps() {
   // init
   const prod = new getProducts();
-  
+
   const products = await prod.getData('products').then((data: [])=>{return data})
-  
+
   return { props: { prods: products} }
 }
+
 export default Catalog
