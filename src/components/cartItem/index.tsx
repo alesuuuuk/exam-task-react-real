@@ -13,9 +13,10 @@ import arrow from "@/assets/icons/cart/bottom_arrow.svg";
 import cancel from "@/assets/icons/cart/delete.svg";
 
 import img from "@/assets/icons/productCard/test.png";
+
 const CartItem = (props: Prod) => {
-    const { title, image, price, category, id, description } = props.data;
-    console.log("____PROPS", title, image, price)
+  const { title, image, price, category, id, description } = props.data;
+  // console.log("____PROPS", title, image, price)
   const [qty, setQty] = useState(1);
 
   return (

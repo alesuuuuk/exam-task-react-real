@@ -18,13 +18,18 @@ interface Props{
 }
 
 const Cart = ({prods}: Props) => {
+
   const dispatch = useDispatch();
   const [cartProducts, setCartProducts] = useState<Prod[] | null>(null);
   const data = useSelector((state: any) => state.cart.items);
-  console.log(data)
   
-  
-  
+  prods.map((product: any)=>{
+    const {id} = product
+    const isExist = data.indexOf(id)
+
+    
+  })
+
   return (
     <>
       <section className={`${s.cart} container`}>
@@ -41,10 +46,9 @@ const Cart = ({prods}: Props) => {
           <button>оформити покупку</button>
         </div>
         <div className={s.cart__items}>
-         {data.map((product: any) =>{
-          // @ts-ignore
-          return <CartItem key={prods.id} data={prods}/>
-        })}
+         {/* {prods.map((product: any) =>{
+
+         })} */}
         </div>
       </section>
     </>
