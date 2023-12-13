@@ -43,7 +43,7 @@ const Header = () => {
         <div>
           <Link href={'#'}><Image src={img_like} alt=""></Image></Link>
           <label htmlFor=""><Image src={img_search} alt=""></Image></label>
-          <Link href={'#'}><Image src={img_cart} alt=""></Image></Link>
+          <Link href={'/cart'}><Image src={img_cart} alt=""></Image></Link>
           <div className={s.btnHolder}>
             <button>Телефонувати</button>
           </div>

@@ -28,8 +28,6 @@ const Catalog = ({ prods }: Props) => {
   // init
   const router = useRouter()
 
-  // let testA = [{id: 1}, {id: 2},{id: 3},{id: 4},{id: 5},{id: 6},{id: 7},{id: 8},{id: 9},{id: 10},{id: 11},{id: 12},{id: 13},{id: 14},{id: 15},{id: 16},{id: 17},{id: 18},{id: 19},{id: 20},{id: 21},{id: 22}]
-
   // functions
   function generatePgnPages() {
     const elements = []
@@ -76,33 +74,6 @@ const Catalog = ({ prods }: Props) => {
     }
     setPagProducts(pagArray)
   }, [])
-  
-  // onChange
-  // useEffect(()=>{
-  //   pagArray = []
-  //   pagPagesArray = []
-  //   products.map((e)=>{
-  //     if (counter < 9){
-  //       pagPagesArray.push(e)
-  //       // console.log(e.id)
-  //     }else{
-  //       counter = 0
-  //       pagArray.push(pagPagesArray)
-  //       //console.log(pagPagesArray)
-  //       pagPagesArray = []
-  //     }
-  //     counter++
-  //   })
-  //   if (pagPagesArray.length > 0 && (pagArray[pagArray.length-1].length + pagPagesArray.length) <= 9){
-  //     pagPagesArray.map((e)=>{
-  //       pagArray[pagArray.length-1].push(e)
-  //     })
-  //   }else if (pagPagesArray.length > 0){
-  //     pagArray.push(pagPagesArray)
-  //   }
-  //   setPagProducts(pagArray)
-  //   console.log(pagProducts)
-  // }, [products])
 
   return (
     <>
@@ -126,11 +97,7 @@ const Catalog = ({ prods }: Props) => {
               {generatePgnPages()}
             </div>
           </div>
-          <div></div>
-        </div>
-    </>
-  )
-}
+)}
 
 // SSR
 export async function getServerSideProps() {

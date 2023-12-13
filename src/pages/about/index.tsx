@@ -17,15 +17,26 @@ import { Com } from "@/interfaces";
 import Partners from "@/components/partners";
 import RewiewCard from "@/components/rewiewCard";
 import FaqQuestions from "@/components/faqQuestions";
+import { count } from "console";
 
 interface Props{
   rewiews: Com[];
 }
 const About = ({rewiews}: Props) => {
+  // init 
+  const com = new getComments();
   // rews == rewiews 
   const [rews, setRewiews] = useState<Com[] | null>(rewiews)
   // FAQ
   const [FAQ, setFAQ] = useState<any>(null)
+  // setting rewiews for state
+  useEffect(()=>{
+    com.getData("comments").then((data: any) => setRewiews(data))
+  }, [])
+  console.log(rews)
+
+  // counter for rewiews
+  let counterRews = 0;
 
   // FAQ titles and descriptions array
   const FAQ_array = [
@@ -71,14 +82,20 @@ const About = ({rewiews}: Props) => {
       <section className={`${s.reviews} container`}>
         <h2>Відгуки</h2>
         <div className={s.reviews__items}>
-        {/* {
+        {
           rews ? (
             rews.map((rewiew: Com)=>{
-              return <RewiewCard/>
+              if (counterRews < 4){
+                ++counterRews;
+                return <RewiewCard key={rewiew.id} data={rewiew}/>
+              }else{
+                return
+              }
+              
             })
           ) : (
             <div className={s.rewiew__load}> Rewiews are loading...</div>
-          )}  */}
+          )} 
         </div>
       </section>
     </>

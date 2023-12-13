@@ -11,4 +11,11 @@ export class getProducts{
             return json;
         })
     }
+    public async getSingleProduct( id: number) {
+        return await fetch(`${this.baseURL}/products/${id}`)
+        .then((res) => res.json())
+        .then((json) =>{
+            return json;
+        })
+    }
 }
