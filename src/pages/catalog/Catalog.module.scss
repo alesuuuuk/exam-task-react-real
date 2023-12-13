@@ -1,0 +1,39 @@
+@import "/src//styles//variables.scss";
+
+.items{
+    &__container{
+        &_products{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        &_pagination{
+            display: flex;
+            justify-content: center;
+
+            margin-top: 40px;
+            margin-bottom: 20px;
+
+            button{
+                width: 50px;
+                height: 50px;
+                font-weight: 600;
+
+                border: 2px solid rgb(206, 205, 205);
+
+                background-color: $--red;
+                color: $--white;
+
+                cursor: pointer;
+            }
+            button:nth-child(1){
+                margin-right: 20px;
+            }
+            button:nth-child(2){
+                margin-left: 20px;
+            }
+        }
+    }
+}

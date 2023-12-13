@@ -37,12 +37,12 @@ const ProductCard = (props: Prod) => {
         </div>
 
         <div className={s.card__img}>
-          <Link href={'/'}><Image src={image} alt="product img" width={200} height={200}/></Link>
+          <Link href={`/catalog/${title}?id=${id}`}><Image src={image} alt="product img" width={200} height={200}/></Link>
         </div>
 
-        <div><Link className={s.card__title} style={{color: "black", textDecoration: "none"}} href={'/'}><h3>{title}</h3></Link></div>
+        <div><Link className={s.card__title} style={{color: "black", textDecoration: "none"}} href={`/catalog/${title}?id=${id}`}><h3>{title}</h3></Link></div>
         
-        <div><Link className={s.card__author} href={'/'}>АДОЛЬФ</Link></div>
+        <div><Link className={s.card__author} href={'/'}>АДОЛЬФ_ГТЛР_uwu</Link></div>
 
         <p className={s.card__about_category}>{category}</p>
 

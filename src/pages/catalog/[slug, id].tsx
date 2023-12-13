@@ -27,7 +27,6 @@ const singleProduct = () => {
     return (
         <>
             <div>id : {id}</div>
-            <div>{product.title}</div>
         </>
     )
 }
