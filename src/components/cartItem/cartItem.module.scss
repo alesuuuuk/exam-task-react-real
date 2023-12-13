@@ -1,43 +1,47 @@
 @import "/src/styles/variables.scss";
 
 .card {
-  box-shadow:  0px 0px 20px 0px $--box-shadow-color;
+  box-shadow: 0px 0px 20px 0px $--box-shadow-color;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  img{
-
+  img {
   }
-  &__nameAndDescription{
-    
+  &__nameAndDescription {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     max-width: 30%;
-    &_name{
+    &_name {
       color: $--black;
     }
-    &_description{
+    &_description {
       color: $--grey;
     }
   }
-  &__qty{
+  &__qty {
     display: flex;
     flex-direction: row;
-    button{
+    button {
       text-align: center;
       width: 40px;
       height: 30px;
       border: 1px solid $--grey-cart-btns;
       cursor: pointer;
-      
     }
-    p{
+    p {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 50%;
       border: 1px solid $--grey-cart-btns;
     }
+    
+  }
+  &__price {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    color: $--black-font-color-cart;
   }
 }
