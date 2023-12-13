@@ -34,11 +34,15 @@ export const cartSlice = createSlice({
     addDataFromLS: (state, action: PayloadAction<[]>) => {
       state.items = [...action.payload];
     },
+    removeAllItemsFromCart: (state) =>{
+      state.items = [];
+      localStorage.setItem("cart", JSON.stringify(state.items));
+    }
   },
 });
 
 // export reducer
-export const { addItemToCart, addDataFromLS, removeItemFromCart } =
+export const { addItemToCart, addDataFromLS, removeItemFromCart, removeAllItemsFromCart } =
   cartSlice.actions;
 // export slice
 export default cartSlice.reducer;

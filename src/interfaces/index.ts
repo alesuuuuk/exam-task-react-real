@@ -15,13 +15,10 @@ export interface Prod {
 }
 
 export interface Com {
-  key: number;
-  data: {
-    body: string;
-    email: string;
-    postID: number;
-  };
   id: number;
+  body: string;
+  email: string;
+  postID: number;
 }
 
 export interface ProdNoProps {

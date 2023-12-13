@@ -14,10 +14,15 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addItemToFavourites: (state, action: PayloadAction<number>) => {
-      state.items.push(action.payload);
-      console.log(state.items)
+      const productID = action.payload;
+      const isFavourites = state.items.indexOf(productID);
+      if (isFavourites == -1) {
+        state.items.push(action.payload);
       // set to LS
       localStorage.setItem("favourites", JSON.stringify(state.items));
+      }else{
+      alert("in favourites")
+      }
     },
     removeItemFromFavourites: (state, action: PayloadAction<number>) => {
       const productID = action.payload;
@@ -34,11 +39,16 @@ export const cartSlice = createSlice({
     addDataFromLS: (state, action: PayloadAction<[]>) => {
       state.items = [...action.payload];
     },
+    removeAllItemsFromFavourites: (state) =>
+    {
+      state.items = [];
+      localStorage.setItem("favourites", JSON.stringify(state.items));
+    }
   },
 });
 
 // export reducer
-export const { addItemToFavourites, addDataFromLS, removeItemFromFavourites } =
+export const { addItemToFavourites, addDataFromLS, removeItemFromFavourites, removeAllItemsFromFavourites } =
   cartSlice.actions;
 // export slice
 export default cartSlice.reducer;
