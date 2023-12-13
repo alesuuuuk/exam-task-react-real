@@ -22,13 +22,9 @@ const Cart = ({prods}: Props) => {
   const [cartProducts, setCartProducts] = useState<Prod[] | null>(null);
   const data = useSelector((state: any) => state.cart.items);
   console.log(data)
-  const prod = new getProducts();
   
-  // useEffect(()=>{
-  //   data.map((e: any) => {
-  //     if ( e.target)
-  //   })
-  // }, [data])
+  
+  
   return (
     <>
       <section className={`${s.cart} container`}>
@@ -45,14 +41,10 @@ const Cart = ({prods}: Props) => {
           <button>оформити покупку</button>
         </div>
         <div className={s.cart__items}>
-          {/* {cartProducts ? (
-            cartProducts.map((e: any) => {
-              return <CartItem key={e}/>
-            })
-          ) : (
-            <div>No products in cart yet</div>
-          )} */}
-          <CartItem/>
+         {data.map((product: any) =>{
+          // @ts-ignore
+          return <CartItem key={prods.id} data={prods}/>
+        })}
         </div>
       </section>
     </>
