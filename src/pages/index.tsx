@@ -31,6 +31,9 @@ const Home = ({prods, ctgs}: Props) => {
   
   // counter to limit categories
   let counter = 0
+
+  // duplicated categories
+  let dpCtgs = [...ctgs, ...ctgs, ...ctgs.slice(0, 1)]
   return (
     <>
       <div className={s.hero}>
@@ -56,9 +59,11 @@ const Home = ({prods, ctgs}: Props) => {
         <section className={s.categoriesContainer}>
           <div className={s.categoriesContainer__title}>Категорії</div>
           <div className={s.categoriesContainer__categories}>
-            {ctgs && ctgs?.map((category)=>{
+            
+            {dpCtgs && dpCtgs?.map((category)=>{
               counter += 1
               const image = prods?.find(product => product.category === category)
+              
               if (image && counter <= 9){
                 return(<div className={s.categoriesContainer__categories_category} key={image.id}>
                   <div>
@@ -69,6 +74,7 @@ const Home = ({prods, ctgs}: Props) => {
                   </div>)
               }
             })}
+
           </div>
           <div className={s.categoriesContainer__allCategories}>
             <Link href={'/'}><button>Усі категорії</button></Link>

@@ -18,14 +18,13 @@ interface Props{
 
 const Catalog = ({ prods }: Props) => {
   // pagination helper
-  let counter: number = 0
   let pagArray: any[] = []
   let pagPagesArray: any[] = []
   // states
   const [products, setProducts] = useState<any[]>(prods)
   const [pagProducts, setPagProducts] = useState<any[]>(pagArray)
-  const [pgnPages, setPgnPages] = useState<number>(products.length % 9==0 ? products.length/9 : Math.floor(products.length/9))
-  const [currentPage, setCurrentPage] = useState<number>(Number(useRouter().query?.pgn))
+  const [pgnPages, setPgnPages] = useState<number>(products.length % 9==0 ? products.length/9 : Math.floor(products.length/9)+1)
+  const [currentPage, setCurrentPage] = useState<number>(1)
   // init
   const router = useRouter()
 
@@ -50,24 +49,31 @@ const Catalog = ({ prods }: Props) => {
 
   // onLoad
   useEffect(()=>{
+    // variables
+    let counter: number = 0
+
     // checking pagination page
     let page: any = router.query?.pgn
     if (!page){
       router.push('?pgn=1')
+    }else{
+      setCurrentPage(page)
     }
 
     products.map((e)=>{
-      if (counter < 9){
+      if (counter < 8){
+        counter++
         pagPagesArray.push(e)
         // console.log(e.id)
       }else{
+        pagPagesArray.push(e)
         counter = 0
         pagArray.push(pagPagesArray)
         //console.log(pagPagesArray)
         pagPagesArray = []
-      }
-      counter++
+       }
     })
+    
     if (pagPagesArray.length > 0 && (pagArray[pagArray.length-1].length + pagPagesArray.length) <= 9){
       pagPagesArray.map((e)=>{
         pagArray[pagArray.length-1].push(e)
@@ -75,35 +81,10 @@ const Catalog = ({ prods }: Props) => {
     }else if (pagPagesArray.length > 0){
       pagArray.push(pagPagesArray)
     }
+
+
     setPagProducts(pagArray)
   }, [])
-
-  // onChange
-  // useEffect(()=>{
-  //   pagArray = []
-  //   pagPagesArray = []
-  //   products.map((e)=>{
-  //     if (counter < 9){
-  //       pagPagesArray.push(e)
-  //       // console.log(e.id)
-  //     }else{
-  //       counter = 0
-  //       pagArray.push(pagPagesArray)
-  //       //console.log(pagPagesArray)
-  //       pagPagesArray = []
-  //     }
-  //     counter++
-  //   })
-  //   if (pagPagesArray.length > 0 && (pagArray[pagArray.length-1].length + pagPagesArray.length) <= 9){
-  //     pagPagesArray.map((e)=>{
-  //       pagArray[pagArray.length-1].push(e)
-  //     })
-  //   }else if (pagPagesArray.length > 0){
-  //     pagArray.push(pagPagesArray)
-  //   }
-  //   setPagProducts(pagArray)
-  //   console.log(pagProducts)
-  // }, [products])
 
   return (
     <>

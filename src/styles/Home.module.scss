@@ -75,8 +75,10 @@
         }
         &__categories{
             margin-top: 40px;
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            justify-content: center;
             align-items: center;
             flex-wrap: wrap;
 
@@ -123,11 +125,12 @@
         &__allCategories{
             display: flex;
             justify-content: center;
-            align-items: centere;
+            align-items: center;
 
             text-decoration: none;
 
             margin-top: 20px;
+            margin-bottom: 20px;
 
             button{
                 transition: 0.3s;
