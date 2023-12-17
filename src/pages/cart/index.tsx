@@ -18,10 +18,12 @@ interface Props{
 }
 
 const Cart = ({prods}: Props) => {
+  // init
+  const prod = new getProducts();
   const dispatch = useDispatch();
   const [cartProducts, setCartProducts] = useState<Prod[] | null>(null);
   const data = useSelector((state: any) => state.cart.items);
-  console.log(data)
+  console.log(data, "all id in redux")
   
   
   
@@ -41,9 +43,9 @@ const Cart = ({prods}: Props) => {
           <button>оформити покупку</button>
         </div>
         <div className={s.cart__items}>
-         {data.map((product: any) =>{
+         {data.map((id: any) =>{
           // @ts-ignore
-          return <CartItem key={prods.id} data={prods}/>
+          return <CartItem key={id} id={id}/>
         })}
         </div>
       </section>
