@@ -76,14 +76,18 @@
         &__categories{
             margin-top: 40px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
             justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
+
+
 
             &_category{
                 div:nth-child(1){
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
                     position: relative;
                     overflow: hidden;
                     button{
@@ -207,7 +211,6 @@
                 justify-content: center;
             }
             &__categories{
-                gap: 25px;
                 &_category{
                     &_title{
                         display: flex;
