@@ -35,6 +35,7 @@ const Catalog = ({ prods, ctgs }: Props) => {
   const [dropdowns, setDropDowns] = useState<any>({sort: false, price: true, category: true})
   const [price, setPrice] = useState<number[]>([7, 999])
   const [minMaxProductsPrice, setMinMaxProductsPrice] = useState<number[]>([7, 999])
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   // init
   const router = useRouter()
   // let testA = [{id: 1}, {id: 2},{id: 3},{id: 4},{id: 5},{id: 6},{id: 7},{id: 8},{id: 9},{id: 10},{id: 11},{id: 12},{id: 13},{id: 14},{id: 15},{id: 16},{id: 17},{id: 18},{id: 19},{id: 20},{id: 21},{id: 22}]
@@ -132,11 +133,18 @@ const Catalog = ({ prods, ctgs }: Props) => {
       setPagProducts(pagArray)
     }
   }
+  
+  function categoryChange (category: string) {
+    if (selectedCategories.includes(category)) {
+      setSelectedCategories(selectedCategories.filter((ctg) => ctg !== category))
+    }else {
+      setSelectedCategories([...selectedCategories, category])
+    }
+  }
 
   // onLoad
   useEffect(()=>{
     minMaxPrice(prods)
-    
     // variables
     let counter: number = 0
     let params: string = ''
@@ -145,11 +153,21 @@ const Catalog = ({ prods, ctgs }: Props) => {
     let page: any = router.query?.pgn
     let price: any = router.query?.price
     let sort: any = router.query?.sort
+    let queryCtgs: any = router.query?.ctgs
+
     if (!page){
       params += 'pgn=1'
     }else{
       setCurrentPage(page)
       params += `pgn=${currentPage}`
+    }
+
+    if (!queryCtgs){
+      params += '&ctgs=[]'
+    }else{
+      params += `&ctgs=${router.query.ctgs}`
+      // @ts-ignore
+      setSelectedCategories(router.query.ctgs)
     }
 
     if (!sort){
@@ -187,7 +205,13 @@ const Catalog = ({ prods, ctgs }: Props) => {
   }, [])
 
   useEffect(()=>{
+    router.replace({
+      pathname: router.pathname,
+      query: {...router.query, ctgs: selectedCategories}
+    })
+  }, [selectedCategories])
 
+  useEffect(()=>{
     makePagArray(1)
   }, [products])
 
@@ -297,8 +321,8 @@ const Catalog = ({ prods, ctgs }: Props) => {
                   <div className={`${s.items__filter_categories_category} ${dropdowns.category ? s.active : ''}`}>
                     {ctgs && ctgs.map((ctg)=>{
                       return(
-                        <div className={s.items__filter_categories_category_container}>
-                          <input type="checkbox"/>
+                        <div key={ctg} className={s.items__filter_categories_category_container}>
+                          <input type="checkbox" value={ctg} checked={selectedCategories.includes(ctg)} onChange={()=>{categoryChange(ctg)}}/>
                           <div>{ctg}</div>
                         </div>
                       )

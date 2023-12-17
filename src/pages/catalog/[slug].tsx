@@ -5,7 +5,7 @@ import s from './single.module.scss'
 // module
 import { getProducts } from '@/modules/products'
 
-const singleProduct = () => {
+const SingleProduct = () => {
     // router
     const router = useRouter()
     const { slug, id } = router.query
@@ -31,4 +31,4 @@ const singleProduct = () => {
     )
 }
 
-export default singleProduct
+export default SingleProduct
