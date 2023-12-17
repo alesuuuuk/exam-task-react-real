@@ -125,6 +125,8 @@
 
 @media screen and (max-width: 1100px) {
         .card{
+            width: 170px !important;
+            height: 500px;
             &__botton{
                 &_addCart{
                     width: 34px;
@@ -132,13 +134,6 @@
                 }
             }
         }
-}
-
-@media screen and (max-width: 900px) {
-    .card{
-        width: 170px !important;
-        height: 500px;
-    }
 }
 @media screen and (max-width: 610px) {
     .card{

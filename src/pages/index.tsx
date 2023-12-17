@@ -64,16 +64,8 @@ const Home = ({prods, ctgs}: Props) => {
               counter += 1
               const image = prods?.find(product => product.category === category)
               
-              if (image && counter <= 9 && counter != 5){
+              if (image && counter <= 9){
                 return(<div className={s.categoriesContainer__categories_category} key={image.id}>
-                  <div>
-                    <Image src={image.image} alt="" width={200} height={250}></Image>
-                    <Link href={'/'}><button>Переглянути</button></Link>
-                  </div>
-                  <div className={s.categoriesContainer__categories_category_title}>{category}</div>
-                  </div>)
-              }else if(image && counter == 5){
-                return(<div className={`${s.categoriesContainer__categories_category} ${s.categoriesContainer__categories_highlitedCategory}`} key={image.id}>
                   <div>
                     <Image src={image.image} alt="" width={200} height={250}></Image>
                     <Link href={'/'}><button>Переглянути</button></Link>

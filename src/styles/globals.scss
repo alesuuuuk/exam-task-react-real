@@ -11,6 +11,29 @@
     margin-right: 100px;
 }
 
+.slider{
+    width: 100%;
+    height: 3px;
+    background-color: $--red;
+
+    .thumb{
+        top: 50%;
+        transform: translateY(-50%);
+
+        width: 23px;
+        height: 23px;
+
+        background: radial-gradient(circle, $--white 10%, $--red 50%);
+        border-radius: 50%;
+
+        cursor: pointer;
+    }
+}
+
+.fixed{
+    overflow-y: hidden;
+}
+
 @media screen and (max-width: 1200px) {
     .container{
         margin-left: 80px;

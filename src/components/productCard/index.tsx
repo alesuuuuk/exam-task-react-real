@@ -49,7 +49,7 @@ const ProductCard = (props: Prod) => {
         <div className={s.card__botton}>
           
           <div className={s.card__botton_price}>
-            <h3>{price} грн</h3>
+            <h3>{Math.floor(price)} грн</h3>
             <p>в наявності</p>
           </div>
 
