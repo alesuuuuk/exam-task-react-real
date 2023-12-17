@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 // style
 import s from "./cartItem.module.scss";
 // interface
-import { Prod } from "@/interfaces";
+import { Prod, ProdNoProps } from "@/interfaces";
 // redux
 import { useDispatch } from "react-redux";
 // reducers
@@ -19,28 +19,29 @@ import { title } from "process";
 import { compileString } from "sass";
 
 
-interface Props{
-  id: number;
-}
 
-const CartItem =  (props: Props) => {
+
+const CartItem = (props: any) => {
   // init
-  const prod = new getProducts();
-    const {id} = props;
-    console.log(id, "id of element")
-    const data =   prod.getSingleProduct(`${id}`);
-    console.log(data, "product data in cart")
-    
-    
-  const [qty, setQty] = useState(1);
+  const prod = new getProducts()
+
+  const {id} = props
+  // states
+  const [qty, setQty] = useState<number>(1);
+  const [product, setProduct] = useState<ProdNoProps[]>([])
   
+  useEffect(()=>{
+    const data = prod.getSingleProduct(`${id}`).then((data: ProdNoProps[]) => setProduct(data));
+
+    console.log(product)
+  }, [])
 
   return (
     <>
       <div className={`${s.card} container`}>
         <Image src={img} width={100} height={100} alt="product img" />
         <div className={s.card__nameAndDescription}>
-          <h2 className={s.card__nameAndDescription_name}>{data?.title}</h2>
+          <h2 className={s.card__nameAndDescription_name}>{product?.title || 'Loading'}</h2>
           <p className={s.card__nameAndDescription_description}>
             test
           </p>
