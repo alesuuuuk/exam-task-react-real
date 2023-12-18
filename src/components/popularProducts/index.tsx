@@ -1,21 +1,34 @@
 import React from 'react'
 // styles
 import s from "./PopularProducts.module.scss"
-// interfaces
-import { Prod } from '@/interfaces'
 // components
 import ProductCard from '../productCard'
 // modules
 import { getProducts } from '@/modules/products'
 
 
+interface Props {
+    title: string,
+    key: number;
+    data: {
+      category: string;
+      description: string;
+      image: string;
+      price: number;
+      id: number;
+      rating: {
+        rate: number;
+        count: number;
+      };
+      title: string;
+    };
+  }
 
-const PopularProducts = (props: Prod) => {
-
+const PopularProducts = (props: Props) => {
     let counter = 0
     return (
       <>
-          <div className={s.title}>Популярні товари</div>
+          <div className={s.title}>{props.title}</div>
           <div className={`${s.productsContainer} container`}>
               {// @ts-ignore
               props.data.map((e)=>{

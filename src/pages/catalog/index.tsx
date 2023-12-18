@@ -24,18 +24,15 @@ interface Props{
 }
 
 const Catalog = ({ prods, ctgs }: Props) => {
-  // pagination helper
-  let pagArray: any[] = []
-  let pagPagesArray: any[] = []
   // states
   const [products, setProducts] = useState<any[]>(prods)
-  const [pagProducts, setPagProducts] = useState<any[]>(pagArray)
+  const [pagProducts, setPagProducts] = useState<any[]>([])
   const [pgnPages, setPgnPages] = useState<number>(products.length % 9==0 ? products.length/9 : Math.floor(products.length/9)+1)
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [dropdowns, setDropDowns] = useState<any>({sort: false, price: true, category: true})
   const [price, setPrice] = useState<number[]>([7, 999])
   const [minMaxProductsPrice, setMinMaxProductsPrice] = useState<number[]>([7, 999])
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+  const [selectedCategories, setSelectedCategories] = useState<any>([])
   // init
   const router = useRouter()
   // let testA = [{id: 1}, {id: 2},{id: 3},{id: 4},{id: 5},{id: 6},{id: 7},{id: 8},{id: 9},{id: 10},{id: 11},{id: 12},{id: 13},{id: 14},{id: 15},{id: 16},{id: 17},{id: 18},{id: 19},{id: 20},{id: 21},{id: 22}]
@@ -77,6 +74,9 @@ const Catalog = ({ prods, ctgs }: Props) => {
   }
 
   function makePagArray(n: number) {
+    // pagination helper
+    let pagArray: any[] = []
+    let pagPagesArray: any[] = []
     // variables
     let counter: number = 0
     if (n == 0){
@@ -112,16 +112,16 @@ const Catalog = ({ prods, ctgs }: Props) => {
         if (counter < 8){
           counter++
           pagPagesArray.push(e)
-          // console.log(e.id)
+          console.log(counter)
         }else{
           pagPagesArray.push(e)
           counter = 0
           pagArray.push(pagPagesArray)
+          // console.log("ARRAY____", pagArray)
           //console.log(pagPagesArray)
           pagPagesArray = []
          }
       })
-      
       if (pagPagesArray.length > 0 && (pagArray[pagArray.length-1].length + pagPagesArray.length) <= 9){
         pagPagesArray.map((e)=>{
           pagArray[pagArray.length-1].push(e)
@@ -163,11 +163,9 @@ const Catalog = ({ prods, ctgs }: Props) => {
     }
 
     if (!queryCtgs){
-      params += '&ctgs=[]'
+      params += '&ctgs=none'
     }else{
       params += `&ctgs=${router.query.ctgs}`
-      // @ts-ignore
-      setSelectedCategories(router.query.ctgs)
     }
 
     if (!sort){
@@ -209,6 +207,12 @@ const Catalog = ({ prods, ctgs }: Props) => {
       pathname: router.pathname,
       query: {...router.query, ctgs: selectedCategories}
     })
+    
+    if(selectedCategories.length > 0){
+      let fProducts: {}[] = products.filter((product: any)=> selectedCategories.some((category: any) => product.category.includes(category)))
+      // setProducts(fProducts)
+    }
+
   }, [selectedCategories])
 
   useEffect(()=>{
@@ -225,7 +229,7 @@ const Catalog = ({ prods, ctgs }: Props) => {
             
             <div className={s.functions__container}>
 
-              <div className={s.functions__container_productsCount}>23 товара</div>
+              <div className={s.functions__container_productsCount}>Кількість продуктів: {products.length}</div>
 
               <div className={s.functions__container_sort}>
 

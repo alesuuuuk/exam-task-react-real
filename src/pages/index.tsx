@@ -28,12 +28,26 @@ const Home = ({prods, ctgs}: Props) => {
   // states
   // State to see when input is focused
   const [inputFocusStatus, setInputFocusStatus] = useState<boolean>(false)
+  const [filteredProds, setFilteredProds] = useState<{}[]>([])
   
   // counter to limit categories
   let counter = 0
 
   // duplicated categories
   let dpCtgs = [...ctgs, ...ctgs, ...ctgs.slice(0, 1)]
+
+
+  // functions
+
+  function addSearchResult (e: any){
+    if (e.target.value.length > 0){
+      let fPrdoducts = prods.filter((prod)=> prod.title.toLowerCase().includes(e.target.value.toLowerCase()))
+      setFilteredProds(fPrdoducts)
+    }else{
+      setFilteredProds([])
+    }
+  }
+
   return (
     <>
       <div className={s.hero}>
@@ -42,18 +56,30 @@ const Home = ({prods, ctgs}: Props) => {
         
         <form action="" className={s.hero__form}>
           
-          <div>
+          <div className={s.hero__form_container}>
             <div>Lorem ipsum dolor sit amet.</div>
             <div>
-              <input onBlur={(e)=>{e.target.value.length > 0 ? setInputFocusStatus(true) : setInputFocusStatus(false)}} onFocus={()=>{setInputFocusStatus(true)}} type="text" placeholder="Пошук"/>
+              <input onInput={(e)=>{
+                addSearchResult(e)
+              }} onBlur={(e)=>{e.target.value.length > 0 ? setInputFocusStatus(true) : setInputFocusStatus(false)}} onFocus={()=>{setInputFocusStatus(true)}} type="text" placeholder="Пошук"/>
               <Image className={inputFocusStatus ? s.active : ''} src={img_search} alt=""></Image>
             </div>
           </div>
-
         </form>
+
+        <div className={`${s.hero__searchResult} ${filteredProds.length > 0 ? s.show : ''}`}>
+              <div className={s.hero__searchResult_holder}>
+                {filteredProds.length > 0 && filteredProds.map((e: any)=>{
+                  return(
+                    <Link href={`/catalog/${e?.title}?id=${e?.id}`}><div>{e?.title}</div></Link>
+                  )
+                })}
+              </div>
+            </div>
+
       </div>
       {/* @ts-ignore */}
-      <PopularProducts key={1} data={prods}/>
+      <PopularProducts key={1} title="Популярні товари" data={prods}/>
 
       <div className={`${s.container} container`}>
         <section className={s.categoriesContainer}>
@@ -65,7 +91,7 @@ const Home = ({prods, ctgs}: Props) => {
               const image = prods?.find(product => product.category === category)
               
               if (image && counter <= 9){
-                return(<div className={s.categoriesContainer__categories_category} key={image.id}>
+                return(<div className={s.categoriesContainer__categories_category} key={counter}>
                   <div>
                     <Image src={image.image} alt="" width={200} height={250}></Image>
                     <Link href={'/'}><button>Переглянути</button></Link>

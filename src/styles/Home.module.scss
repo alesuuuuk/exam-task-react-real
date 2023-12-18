@@ -63,6 +63,77 @@
             }
         }
     }
+
+    &__searchResult{
+        position: absolute;
+        background-color: $--white;
+
+        display: none;
+
+        z-index: 998;
+
+        bottom: -170px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        height: 120px;
+        width: 600px;
+
+        &_holder{
+            height: 120px;
+
+            overflow-y: auto;
+            a{
+                text-decoration: none;
+            }
+            div{
+                text-decoration: none;
+                color: $--black;
+
+                padding: 5px 5px;
+
+                max-height: 30px;
+                height: 30px;
+
+                font-weight: 600;
+
+                cursor: pointer;
+
+                text-decoration: none;
+
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                display: flex;
+                align-items: center;
+
+                div{
+                    height: 30px;
+                }
+            }
+
+            div:hover{
+                background-color: grey;
+            }
+        }
+        &_holder::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+            background-color: #F4F4F4;
+            border-radius: 5px;
+          }
+          
+          ::-webkit-scrollbar-thumb {
+            border: 2px solid $--red;
+            border-radius: 5px;
+          }
+          
+          ::-webkit-scrollbar-track {
+            background-color: #F4F4F4;
+            border-radius: 5px;
+          }
+    }
 }
 
 .container{
@@ -179,6 +250,10 @@
     }
 }
 
+.show{
+    display: block;
+}
+
 @media screen and (max-width: 1050px) {
     .categoriesContainer{
         &__categories{
@@ -218,7 +293,11 @@
                     width: 224px;
                     height: 34px;
                 }
-        }   }
+        }    }
+
+        &__searchResult{
+            width: 400px;
+        }
     }
 }
 
@@ -235,6 +314,10 @@
                     height: 34px;
                 }
         }   }
+        &__searchResult{
+            width: 300px;
+            bottom: -160px;
+        }
     }
 
     .container{
