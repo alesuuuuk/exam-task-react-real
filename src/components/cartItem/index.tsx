@@ -5,7 +5,7 @@ import s from "./cartItem.module.scss";
 // interface
 import { Prod, ProdNoProps } from "@/interfaces";
 // redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // reducers
 import { removeItemFromCart } from "@/store/features/cart";
 // modules
@@ -15,8 +15,7 @@ import arrow from "@/assets/icons/cart/bottom_arrow.svg";
 import cancel from "@/assets/icons/cart/delete.svg";
 
 import img from "@/assets/icons/productCard/test.png";
-import { title } from "process";
-import { compileString } from "sass";
+
 
 
 
@@ -24,8 +23,11 @@ import { compileString } from "sass";
 const CartItem = (props: any) => {
   // init
   const prod = new getProducts()
+  const dispatch = useDispatch();
 
   const {id} = props
+  const data = useSelector((state: any) => state.cart.items);
+  
   // states
   const [qty, setQty] = useState<number>(1);
   const [product, setProduct] = useState<ProdNoProps[]>([])
@@ -39,11 +41,16 @@ const CartItem = (props: any) => {
   return (
     <>
       <div className={`${s.card} container`}>
-        <Image src={img} width={100} height={100} alt="product img" />
+        {/* @ts-ignore */}
+        <Image src={product.image} width={100} height={100} alt="product img" />
         <div className={s.card__nameAndDescription}>
+        {/* @ts-ignore */}
+
           <h2 className={s.card__nameAndDescription_name}>{product?.title || 'Loading'}</h2>
           <p className={s.card__nameAndDescription_description}>
-            test
+        {/* @ts-ignore */}
+
+            {product?.category || 'loading'}
           </p>
         </div>
         <div className={s.card__qty}>
@@ -67,8 +74,12 @@ const CartItem = (props: any) => {
             +
           </button>
         </div>
-        <div className={s.card__price}>test  грн</div>
-        <Image src={cancel} alt="cancel img" />
+        {/* @ts-ignore */}
+
+        <div className={s.card__price}>{product?.price || "Loading"} грн</div>
+        <Image onClick={()=>{
+          dispatch(removeItemFromCart(id))
+        }} src={cancel} alt="cancel img" />
       </div>
     </>
   );

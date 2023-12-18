@@ -23,7 +23,7 @@ const Cart = ({prods}: Props) => {
   const dispatch = useDispatch();
   const [cartProducts, setCartProducts] = useState<Prod[] | null>(null);
   const data = useSelector((state: any) => state.cart.items);
-  console.log(data, "all id in redux")
+  const [allPrice, setAllPrice] = useState(0);
   
   
   

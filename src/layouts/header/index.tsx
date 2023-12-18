@@ -41,7 +41,7 @@ const Header = () => {
         </nav>
 
         <div>
-          <Link href={'#'}><Image src={img_like} alt=""></Image></Link>
+          <Link href={'/favourites'}><Image src={img_like} alt=""></Image></Link>
           <label htmlFor=""><Image src={img_search} alt=""></Image></label>
           <Link href={'/cart'}><Image src={img_cart} alt=""></Image></Link>
           <div className={s.btnHolder}>

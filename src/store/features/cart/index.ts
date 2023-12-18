@@ -16,8 +16,30 @@ export const cartSlice = createSlice({
     addItemToCart: (state, action: PayloadAction<number>) => {
       state.items.push(action.payload);
       console.log(state.items)
-      // set to LS
-      localStorage.setItem("cart", JSON.stringify(state.items));
+     
+
+      // products with qty
+      let qtyCart: any = localStorage.getItem('qtyCart')
+      qtyCart ? qtyCart = JSON.parse(qtyCart) : qtyCart = []
+      
+      if (qtyCart.length > 0){
+        let index: number = qtyCart.findIndex((product: {id: number, qty: number}) => product.id == action.payload)
+        console.log("INDEX_____", index)
+        if (index != -1){
+          qtyCart[index].qty++
+        }else{
+          qtyCart.push(
+            {id: action.payload, qty: 1}
+          )
+        }
+
+      }else{
+        qtyCart.push(
+          {id: action.payload, qty: 1}
+        )
+      }
+
+      localStorage.setItem('qtyCart', JSON.stringify(qtyCart))
     },
     removeItemFromCart: (state, action: PayloadAction<number>) => {
       const productID = action.payload;
@@ -26,7 +48,7 @@ export const cartSlice = createSlice({
       // cond
       if (isExist != -1) {
         state.items = state.items.filter((item) => item != productID);
-        localStorage.setItem("cart", JSON.stringify(state.items));
+        localStorage.setItem("qtyCart", JSON.stringify(state.items));
       } else {
         alert("Product doesn't exist in cart!");
       }
@@ -36,7 +58,7 @@ export const cartSlice = createSlice({
     },
     removeAllItemsFromCart: (state) =>{
       state.items = [];
-      localStorage.setItem("cart", JSON.stringify(state.items));
+      localStorage.setItem("qtyCart", JSON.stringify(state.items));
     }
   },
 });
