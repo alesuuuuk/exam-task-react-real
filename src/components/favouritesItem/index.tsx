@@ -17,7 +17,7 @@ import removeImg from "@/assets/icons/cart/delete.svg";
 const FavouriteItem = (props: any) => {
   const dispatch = useDispatch();
   const prod = new getProducts();
-  const { id } = props.id;
+  const { id } = props;
   const [product, setProduct] = useState<ProdNoProps[]>([]);
   useEffect(() => {
     const data = prod
@@ -53,7 +53,9 @@ const FavouriteItem = (props: any) => {
               dispatch(removeItemFromFavourites(id));
             }}
           />
-          <button className={s.item__actions_addToCart}>Додати у кошик</button>
+          <button onClick={()=>{
+            dispatch(addItemToCart(id))
+          }} className={s.item__actions_addToCart}>Додати у кошик</button>
         </div>
       </div>
     </>

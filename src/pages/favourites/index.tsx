@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 // style
 import s from "./favourites.module.scss";
 // redux
@@ -11,27 +11,30 @@ import {
 //component
 import FavouriteItem from "@/components/favouritesItem";
 
-let data = [
-  {
-    id: 1,
-  },
-  {
-    id:2
-  },
-  {
-    id:5
-  },
-  {
-    id:4
-  },
-];
+// let data = [
+//   {
+//     id: 1,
+//   },
+//   {
+//     id:2
+//   },
+//   {
+//     id:5
+//   },
+//   {
+//     id:4
+//   },
+// ];
 
 const FavoutitesPage = () => {
   const dispatch = useDispatch();
-  // @ts-ignore
-  // const data = useSelector((state: any) => state.favourite.items)
+  const data = useSelector((state: any) => state?.favourite?.items)
+  const [products, setProducts] = useState<any>(null)
+ useMemo(()=>{
+  const data = useSelector((state: any) => state?.favourite?.items);
+ }, [])
     
-  console.log(data)
+  console.log(data, "all data to favourites")
   return (
     <>
       <div className={`${s.favourite} container`}>
@@ -46,6 +49,7 @@ const FavoutitesPage = () => {
         </button>
         <div className={s.favourite__items}>
           {data.map((e:any)=>{
+            console.log(e, "map item ")
             return <FavouriteItem key={e} id={e}/>
           })}
         </div>
