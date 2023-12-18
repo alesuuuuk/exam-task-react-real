@@ -180,6 +180,31 @@
   }
 }
 
+.cart{
+  position: relative;
+
+  &__show{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+
+    background-color: $--red;
+    color: $--white;
+
+    width: 16px;
+    height: 16px;
+
+    font-size: 12px;
+
+    border-radius: 50%;
+
+    left: -5px;
+    top: -5px;
+  }
+}
+
 @media screen and (max-width: 1000px) {
   .header > nav {
     display: none !important;

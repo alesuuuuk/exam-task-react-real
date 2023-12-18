@@ -9,7 +9,7 @@ const initialState: cartState = {
   items: [],
 };
 
-export const cartSlice = createSlice({
+export const favouriteSlice = createSlice({
   name: "favourites",
   initialState,
   reducers: {
@@ -49,6 +49,6 @@ export const cartSlice = createSlice({
 
 // export reducer
 export const { addItemToFavourites, addDataFromLS, removeItemFromFavourites, removeAllItemsFromFavourites } =
-  cartSlice.actions;
+  favouriteSlice.actions;
 // export slice
-export default cartSlice.reducer;
+export default favouriteSlice.reducer;

@@ -59,7 +59,7 @@ const Home = ({prods, ctgs}: Props) => {
           <div className={s.hero__form_container}>
             <div>Lorem ipsum dolor sit amet.</div>
             <div>
-              <input onInput={(e)=>{
+              <input id="input" onInput={(e)=>{
                 addSearchResult(e)
               }} onBlur={(e)=>{e.target.value.length > 0 ? setInputFocusStatus(true) : setInputFocusStatus(false)}} onFocus={()=>{setInputFocusStatus(true)}} type="text" placeholder="Пошук"/>
               <Image className={inputFocusStatus ? s.active : ''} src={img_search} alt=""></Image>
@@ -71,7 +71,7 @@ const Home = ({prods, ctgs}: Props) => {
               <div className={s.hero__searchResult_holder}>
                 {filteredProds.length > 0 && filteredProds.map((e: any)=>{
                   return(
-                    <Link href={`/catalog/${e?.title}?id=${e?.id}`}><div>{e?.title}</div></Link>
+                    <Link key={e} href={`/catalog/${e?.title}?id=${e?.id}`}><div>{e?.title}</div></Link>
                   )
                 })}
               </div>

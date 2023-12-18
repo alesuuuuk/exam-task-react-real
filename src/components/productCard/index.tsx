@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 
 // react tags
 import Image from "next/image";
@@ -13,10 +13,11 @@ import s from "./productCard.module.scss";
 // icons
 import cartIcon from "@/assets/icons/productCard/cart.svg";
 import favouriteIcon from "@/assets/icons/productCard/favourites.svg";
+import favouriteIcon_C from "@/assets/icons/productCard/favouritesC.svg"
 
 
 // redux
-import { useDispatch } from "react-redux"
+import {useSelector, useDispatch } from "react-redux"
 
 // reducers
 import { addItemToCart } from '@/store/features/cart'
@@ -26,6 +27,7 @@ const ProductCard = (props: Prod) => {
   // destructure props
   const {title, image, price, category, id} = props.data;
   const dispatch = useDispatch();
+
   return (
     <>
       <div className={s.card}>

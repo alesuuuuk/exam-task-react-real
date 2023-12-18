@@ -25,7 +25,6 @@ export const cartSlice = createSlice({
       
       if (qtyCart.length > 0){
         let index: number = qtyCart.findIndex((product: {id: number, qty: number}) => product.id == action.payload)
-        console.log("INDEX_____", index)
         if (index != -1){
           qtyCart[index].qty++
         }else{

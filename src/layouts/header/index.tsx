@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import { useSelector, useDispatch } from "react-redux";
 import Link from 'next/link'
 // style
 import s from "./Header.module.scss"
@@ -10,6 +11,10 @@ import img_search from "@/assets/imgs/header/search.png"
 
 import Footer from '../footer'
 const Header = () => {
+  // redux
+  const cart: any = useSelector((state: any) => state.cart.items)
+  const uniqueCart = Array.from(new Set(cart))
+  
   // states
   const [burgerStatus, setBurgerStatus] = useState<boolean>(false)
 
@@ -42,8 +47,11 @@ const Header = () => {
 
         <div>
           <Link href={'#'}><Image src={img_like} alt=""></Image></Link>
-          <label htmlFor=""><Image src={img_search} alt=""></Image></label>
-          <Link href={'/cart'}><Image src={img_cart} alt=""></Image></Link>
+          <label htmlFor="input"><Image src={img_search} alt=""></Image></label>
+          <Link href={'/cart'}><div className={s.cart}>
+            <Image src={img_cart} alt=""></Image>
+            <div className={s.cart__show}>{uniqueCart.length}</div>
+          </div></Link>
           <div className={s.btnHolder}>
             <button>Телефонувати</button>
           </div>

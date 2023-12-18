@@ -2,6 +2,8 @@ import React from 'react'
 
 import {useState, useEffect} from 'react'
 import { useRouter } from 'next/router'
+//@ts-ignore
+import debounce from 'lodash/debounce'
 // styles
 import s from './Catalog.module.scss'
 // image
@@ -112,7 +114,7 @@ const Catalog = ({ prods, ctgs }: Props) => {
         if (counter < 8){
           counter++
           pagPagesArray.push(e)
-          console.log(counter)
+          //console.log(counter)
         }else{
           pagPagesArray.push(e)
           counter = 0
@@ -122,7 +124,8 @@ const Catalog = ({ prods, ctgs }: Props) => {
           pagPagesArray = []
          }
       })
-      if (pagPagesArray.length > 0 && (pagArray[pagArray.length-1].length + pagPagesArray.length) <= 9){
+      
+      if (pagPagesArray.length > 0 && (pagArray[pagArray.length-1]?.length + pagPagesArray.length) <= 9){
         pagPagesArray.map((e)=>{
           pagArray[pagArray.length-1].push(e)
         })
@@ -136,17 +139,37 @@ const Catalog = ({ prods, ctgs }: Props) => {
   
   function categoryChange (category: string) {
     if (selectedCategories.includes(category)) {
-      setSelectedCategories(selectedCategories.filter((ctg) => ctg !== category))
+      setSelectedCategories(selectedCategories.filter((ctg: any) => ctg !== category))
     }else {
       setSelectedCategories([...selectedCategories, category])
     }
   }
 
-  // onLoad
-  useEffect(()=>{
-    minMaxPrice(prods)
-    // variables
-    let counter: number = 0
+  // function checkForCategories (i: number) {
+  //   let ctgs = router.query.ctgs
+  //   if (typeof(ctgs) == "string" && ctgs != "none"){
+  //     setSelectedCategories([...selectedCategories, ctgs])
+  //   }else if (typeof(ctgs) != "string"){
+  //     setSelectedCategories(ctgs)
+  //   }
+
+  //   if (i == 0){
+  //     if(selectedCategories.length > 0){
+  //       let fProducts: {}[] = products.filter((product: any)=> selectedCategories.some((category: any) => product.category.includes(category)))
+  //       setProducts(fProducts)
+  //     }
+  //   }else{
+  //     if(selectedCategories.length > 0){
+  //       let fProducts: {}[] = products.filter((product: any)=> selectedCategories.some((category: any) => product.category.includes(category)))
+  //       setProducts(fProducts)
+  //     }else{
+  //       checkParams()
+  //     }
+  //   }
+  // }
+
+  function checkParams() {
+    setProducts(prods)
     let params: string = ''
 
     // checking queryParams
@@ -185,21 +208,38 @@ const Catalog = ({ prods, ctgs }: Props) => {
       let sortedProducts = prods.sort((a:any, b:any)=> b.rating.rate - a.rating.rate)
       setProducts(sortedProducts)
 
-      makePagArray(0)
+      makePagArray(1)
     }else if (router.query.sort == 'desc'){
       let sortedProducts = prods.sort((a:any, b:any)=> b.price - a.price)
       setProducts(sortedProducts)
 
-      makePagArray(0)
+      makePagArray(1)
     }else if (router.query.sort == 'asc'){
       let sortedProducts = prods.sort((a:any, b:any)=> a.price - b.price)
       setProducts(sortedProducts)
 
-      makePagArray(0)
+      makePagArray(1)
     }else{
-      makePagArray(0)
+      setProducts(prods)
+      makePagArray(1)
     }
 
+  }
+
+  const changePriceParams = debounce(()=>{
+    router.replace({
+      pathname: router.pathname,
+      query: {...router.query, minPrice: price[0], maxPrice: price[1]}
+    })
+  }, 300)
+
+  // onLoad
+  useEffect(()=>{
+    setProducts(prods)
+    minMaxPrice(prods)
+    // variables
+    let counter: number = 0
+    checkParams()
   }, [])
 
   useEffect(()=>{
@@ -208,14 +248,16 @@ const Catalog = ({ prods, ctgs }: Props) => {
       query: {...router.query, ctgs: selectedCategories}
     })
     
-    if(selectedCategories.length > 0){
-      let fProducts: {}[] = products.filter((product: any)=> selectedCategories.some((category: any) => product.category.includes(category)))
-      // setProducts(fProducts)
-    }
-
+    // checkForCategories(1)
   }, [selectedCategories])
 
   useEffect(()=>{
+    changePriceParams()
+  }, [price])
+      
+
+  useEffect(()=>{
+    setPgnPages(products.length % 9==0 ? products.length/9 : Math.floor(products.length/9)+1)
     makePagArray(1)
   }, [products])
 
@@ -247,7 +289,7 @@ const Catalog = ({ prods, ctgs }: Props) => {
                         query: {...router.query, sort: "desc"}
                       })
                     }}>
-                    <div>Від дешевих до дорогих</div>
+                    <div>Від дорогих до дешевих</div>
                   </div>
 
                   <div className={s.functions__container_sort_options_option} onClick={()=>{
@@ -258,7 +300,7 @@ const Catalog = ({ prods, ctgs }: Props) => {
                         query: {...router.query, sort: "asc"}
                       })
                     }}>
-                    <div>Від дорогих до дешевих</div>
+                    <div>Від дешевих до дорогих</div>
                   </div>
 
                   <div className={s.functions__container_sort_options_option} onClick={()=>{
