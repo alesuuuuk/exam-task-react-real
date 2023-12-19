@@ -18,17 +18,25 @@ interface Props{
 }
 
 const Cart = ({prods}: Props) => {
-
+  // init
+  const prod = new getProducts();
   const dispatch = useDispatch();
   const [cartProducts, setCartProducts] = useState<Prod[] | null>(null);
-  const data = useSelector((state: any) => state.cart.items);
+  const data = useSelector((state: any) => state.cart.items)
+  const convertObject = data.reduce((acc: any, id: number) => {
+    if (acc[id]) {
+      acc[id].qty += 1;
+    } else {
+      acc[id] = { id, qty: 1 };
+    }
+    return acc;
+  }, {})
   
-  prods.map((product: any)=>{
-    const {id} = product
-    const isExist = data.indexOf(id)
+  const convertObjectArray = Object.values(convertObject)
 
-    
-  })
+  const [allPrice, setAllPrice] = useState(0);
+
+  
 
   return (
     <>
@@ -46,9 +54,10 @@ const Cart = ({prods}: Props) => {
           <button>оформити покупку</button>
         </div>
         <div className={s.cart__items}>
-         {/* {prods.map((product: any) =>{
-
-         })} */}
+         {convertObjectArray.map((obj: any) =>{
+          // @ts-ignore
+          return <CartItem key={obj.id} id={obj.id} qty={obj.qty}/>
+        })}
         </div>
       </section>
     </>

@@ -18,28 +18,6 @@ export const cartSlice = createSlice({
       console.log(state.items)
       // set to LS
       localStorage.setItem("cart", JSON.stringify(state.items));
-
-      // products with qty
-      let qtyCart: any = localStorage.getItem('qtyCart')
-      qtyCart ? qtyCart = JSON.parse(qtyCart) : qtyCart = []
-      
-      if (qtyCart.length > 0){
-        let index: number = qtyCart.findIndex((product: {id: number, qty: number}) => product.id == action.payload)
-        if (index != -1){
-          qtyCart[index].qty++
-        }else{
-          qtyCart.push(
-            {id: action.payload, qty: 1}
-          )
-        }
-
-      }else{
-        qtyCart.push(
-          {id: action.payload, qty: 1}
-        )
-      }
-
-      localStorage.setItem('qtyCart', JSON.stringify(qtyCart))
     },
 
     removeItemFromCart: (state, action: PayloadAction<number>) => {
@@ -54,6 +32,25 @@ export const cartSlice = createSlice({
         alert("Product doesn't exist in cart!");
       }
     },
+
+    removeQtyFromCart: (state, action: PayloadAction<number>) => {
+      const qty = action.payload;
+      const isExist = state.items.indexOf(qty);
+      // cond
+      if (isExist !== -1) {
+        state.items = [...state.items.slice(0, isExist), ...state.items.slice(isExist + 1)]
+
+        localStorage.setItem("cart", JSON.stringify(state.items));
+      }
+    },
+
+    addQtyToCart: (state, action: PayloadAction<number>) => {
+      const qty = action.payload
+
+      state.items.push(qty)
+      localStorage.setItem("cart", JSON.stringify(state.items));
+    },
+
     addDataFromLS: (state, action: PayloadAction<[]>) => {
       state.items = [...action.payload];
     },
@@ -65,7 +62,7 @@ export const cartSlice = createSlice({
 });
 
 // export reducer
-export const { addItemToCart, addDataFromLS, removeItemFromCart, removeAllItemsFromCart } =
+export const { addItemToCart, addDataFromLS, removeItemFromCart, removeAllItemsFromCart, removeQtyFromCart, addQtyToCart } =
   cartSlice.actions;
 // export slice
 export default cartSlice.reducer;
