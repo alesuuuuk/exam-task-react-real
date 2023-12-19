@@ -15,7 +15,6 @@ export const cartSlice = createSlice({
   reducers: {
     addItemToCart: (state, action: PayloadAction<number>) => {
       state.items.push(action.payload);
-      console.log(state.items)
       // set to LS
       localStorage.setItem("cart", JSON.stringify(state.items));
     },

@@ -1,0 +1,85 @@
+@import "/src/styles/variables.scss";
+
+.item {
+  box-shadow: 0px 0px 20px 0px $--box-shadow-color;
+  padding: 20px;
+  display: flex;
+  margin-bottom: 30px;
+  justify-content: space-between;
+  flex-direction: row;
+  @media (max-width:630px) {
+    flex-direction: column;
+  }
+
+  &__description {
+    display: flex;
+    
+    img {
+      margin-right: 30px;
+      
+    }
+    &_info {
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      .title {
+        color: $--black;
+        display: flex;
+        flex-wrap: wrap;
+        @media (max-width: 450px) {
+            font-size: small;
+        }
+      }
+      .category {
+        color: $--grey-hover;
+      }
+      .existing {
+        color: $--red;
+      }
+    }
+  }
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    // justify-content: space-between;
+    &_price {
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      margin-right: 19px;
+      @media (max-width: 400px) {
+        font-size: small;
+    }
+    @media (max-width:630px) {
+        margin: auto;
+      }
+    
+    img{
+        cursor: pointer;
+        @media (max-width: 400px) {
+            width: 20px;
+            height: 20px;
+          }
+    }
+    }
+    &_addToCart{
+        background-color: $--red;
+        color: $--white;
+        transition: 0.3s;
+        padding: 10px 30px;
+        cursor: pointer;
+        border: none;
+        margin-left: 10px;
+        &:hover{
+            transition: 0.3s;
+            color: $--red;
+            background-color: $--white;
+            border: 1px solid $--red-hover;
+        }
+        @media (max-width:520px) {
+            padding: 5px 15px;
+        }
+    }
+  }
+}

@@ -42,6 +42,11 @@
     }
    
     &__description{
+        height: 190px;
+        max-height: 190px;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
         
         bottom: 0;
         

@@ -4,6 +4,10 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 // styles
 import s from './single.module.scss'
+// reducers
+import { addItemToCart } from "@/store/features/cart";
+import { addItemToFavourites } from '@/store/features/favourite';
+import { useDispatch } from 'react-redux';
 // module
 import { getProducts } from '@/modules/products'
 // components
@@ -19,6 +23,8 @@ interface Props{
 }
 
 const SingleProduct = ({prods}: Props) => {
+    // redux
+    const dispatch = useDispatch()
     // router
     const router = useRouter()
     const { slug, id } = router.query
@@ -75,7 +81,7 @@ const SingleProduct = ({prods}: Props) => {
                         <div className={s.hero__info_first_standartColor}>Колір виробника чорний</div>
 
                         <div className={s.hero__info_first_colorBtns}>
-                            <button>чорний</button>
+                            <button className={s.activeBtn}>чорний</button>
                             <button>графіт</button>
                             <button>білий</button>
                         </div>
@@ -86,8 +92,8 @@ const SingleProduct = ({prods}: Props) => {
                         </div>
 
                         <div className={s.hero__info_first_btns}>
-                            <button>Добавити в корзину</button>
-                            <button>
+                            <button onClick={()=>{dispatch(addItemToCart(Number(id)))}}>Добавити в корзину</button>
+                            <button onClick={()=>{dispatch(addItemToFavourites(Number(id)))}}>
                                 <div>У бажання</div>
                                 <Image src={img_fav} alt=''></Image>
                             </button>
@@ -95,7 +101,7 @@ const SingleProduct = ({prods}: Props) => {
                     </div>
                     <div className={s.hero__info_openBtns}>
                         <div>
-                            <button>Всі характеристики</button>
+                            <button className={s.activeBtn}>Всі характеристики</button>
                             <button>Опис</button>
                             <button>Відгуки</button>
                         </div>

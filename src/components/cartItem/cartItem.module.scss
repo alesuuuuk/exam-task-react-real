@@ -7,14 +7,23 @@
   align-items: center;
   justify-content: space-around;
   margin-bottom: 15px;
+  margin-top: 15px;
+
+  max-height: 150px;
+
   img {
     height: 90%;
+    max-height: 150px;
   }
+
   &__nameAndDescription {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    max-width: 30%;
+
+    width: 300px;
+    max-width: 300px;
+
     &_name {
       color: $--black;
     }
@@ -25,6 +34,10 @@
   &__qty {
     display: flex;
     flex-direction: row;
+
+    width: 100px;
+    max-width: 100px;
+
     button {
       text-align: center;
       width: 40px;
@@ -46,5 +59,38 @@
     font-style: normal;
     font-weight: 700;
     color: $--black-font-color-cart;
+
+    width: 120px;
+    max-width: 120px;
   }
+}
+
+
+@media screen and (max-width: 1000px) {
+  .card {
+    flex-direction: column;
+    height: auto;
+    max-height: none;
+
+    img {
+      max-height: none;
+    };
+
+    &__nameAndDescription {
+      align-items: center;
+      justify-content: center;
+
+      &_description{
+        margin-top: 2px
+      }
+    };
+    &__qty {
+      margin-top: 16px;
+      margin-bottom: 10px;
+    }
+
+    &__delete{
+      margin-top: 10px
+    }
+};
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 // style
 import s from "./cartItem.module.scss";
 // interface
@@ -17,9 +18,6 @@ import cancel from "@/assets/icons/cart/delete.svg";
 import img from "@/assets/icons/productCard/test.png";
 
 
-
-
-
 const CartItem = (props: any) => {
   // init
   const prod = new getProducts()
@@ -34,24 +32,22 @@ const CartItem = (props: any) => {
   
   useEffect(()=>{
     // @ts-ignore
-    const data = prod.getSingleProduct(`${id}`).then((data: ProdNoProps[]) => setProduct(data));
-
-    //console.log(product)
+    const setProducts = prod.getSingleProduct(`${id}`).then((data: ProdNoProps[]) => setProduct(data));
   }, [])
 
   return (
     <>
       <div className={`${s.card} container`}>
         {/* @ts-ignore */}
-        <Image src={product.image} width={100} height={100} alt="product img" />
+        <Link href={`/catalog/${product?.title}?id=${id}`}><Image src={product?.image} width={100} height={100} alt="Loading" /></Link>
         <div className={s.card__nameAndDescription}>
         {/* @ts-ignore */}
 
-          <h2 className={s.card__nameAndDescription_name}>{product?.title || 'Loading'}</h2>
+          <Link style={{textDecoration: "none"}} href={`/catalog/${product?.title}?id=${id}`}><h2 className={s.card__nameAndDescription_name}>{product?.title || 'Loading'}</h2></Link>
           <p className={s.card__nameAndDescription_description}>
         {/* @ts-ignore */}
 
-            {product?.category || 'loading'}
+            {product?.category || 'Loading'}
           </p>
         </div>
         <div className={s.card__qty}>
@@ -79,7 +75,7 @@ const CartItem = (props: any) => {
         {/* @ts-ignore */}
 
         <div className={s.card__price}>{product?.price || "Loading"} грн</div>
-        <Image onClick={()=>{
+        <Image className={s.card__delete} onClick={()=>{
           dispatch(removeItemFromCart(id))
         }} src={cancel} alt="cancel img" />
       </div>

@@ -13,7 +13,7 @@ import s from "./productCard.module.scss";
 // icons
 import cartIcon from "@/assets/icons/productCard/cart.svg";
 import favouriteIcon from "@/assets/icons/productCard/favourites.svg";
-import favouriteIcon_C from "@/assets/icons/productCard/favouritesC.svg"
+import favouriteIcon_C from "@/assets/icons/productCard/favouriteC.jpg"
 
 
 // redux
@@ -27,13 +27,14 @@ const ProductCard = (props: Prod) => {
   // destructure props
   const {title, image, price, category, id} = props.data;
   const dispatch = useDispatch();
+  const data = useSelector((state: any) => state?.favourite?.items)
 
   return (
     <>
       <div className={s.card}>
         <div className={s.card__top}>
           <div className={s.card__top_new}>НОВЕ</div>
-          <Image className={s.card__top_heart} src={favouriteIcon} alt="heart" onClick={() =>{
+          <Image className={s.card__top_heart} src={data.indexOf(id) != -1 ? favouriteIcon_C : favouriteIcon} alt="heart" onClick={() =>{
             dispatch(addItemToFavourites(id))
           }} />
         </div>

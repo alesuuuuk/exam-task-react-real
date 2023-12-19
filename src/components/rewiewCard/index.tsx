@@ -35,7 +35,7 @@ const RewiewCard = (props: Props) => {
         <Image src={star} alt="star"/>
         <Image src={star} alt="star"/>
       </div>
-      <p className={s.responseCard__description}>{body}</p>
+      <p className={s.responseCard__description}>{body + "..."}</p>
       <Link className={s.responseCard__link} href={`#`}>Відгук повністю</Link>
     </div>
     </>

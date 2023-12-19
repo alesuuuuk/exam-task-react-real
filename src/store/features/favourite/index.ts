@@ -18,13 +18,16 @@ export const favouriteSlice = createSlice({
       const isFavourites = state.items.indexOf(productID);
       if (isFavourites == -1) {
         state.items.push(action.payload);
+      }else{
+        state.items = state.items.filter((item) => item != productID);
+        localStorage.setItem("favourites", JSON.stringify(state.items));
+      }
+
       // set to LS
       localStorage.setItem("favourites", JSON.stringify(state.items));
-      }else{
-      alert("in favourites")
-      }
     },
     removeItemFromFavourites: (state, action: PayloadAction<number>) => {
+      console.log(action.payload)
       const productID = action.payload;
       // check if exist product ID in state
       const isExist = state.items.indexOf(productID);
@@ -39,6 +42,7 @@ export const favouriteSlice = createSlice({
     addDataFromLS: (state, action: PayloadAction<[]>) => {
       state.items = [...action.payload];
     },
+
     removeAllItemsFromFavourites: (state) =>
     {
       state.items = [];

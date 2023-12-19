@@ -55,9 +55,11 @@ const Cart = ({prods}: Props) => {
         </div>
         <div className={s.cart__items}>
          {convertObjectArray.map((obj: any) =>{
-          // @ts-ignore
-          return <CartItem key={obj.id} id={obj.id} qty={obj.qty}/>
+          return (<CartItem key={obj.id} id={obj.id} qty={obj.qty}/>)
         })}
+        </div>
+        <div className={s.cart__none}>
+          <h5>{data.length == 0 && "Ви ще не додали жодного продукту"}</h5>
         </div>
       </section>
     </>

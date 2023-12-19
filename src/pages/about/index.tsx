@@ -33,8 +33,7 @@ const About = ({rewiews}: Props) => {
   useEffect(()=>{
     com.getData("comments").then((data: any) => setRewiews(data))
   }, [])
-
-  //console.log(rews)
+  console.log(rews)
 
   // counter for rewiews
   let counterRews = 0;

@@ -183,8 +183,10 @@
 .cart{
   position: relative;
 
+  
+
   &__show{
-    display: flex;
+    display: none !important;
     justify-content: center;
     align-items: center;
 
@@ -203,6 +205,10 @@
     left: -5px;
     top: -5px;
   }
+}
+
+.showCounter{
+  display: flex !important;
 }
 
 @media screen and (max-width: 1000px) {
