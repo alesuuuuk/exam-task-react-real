@@ -1,0 +1,61 @@
+@import "./variables.scss";
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: $--main-font;
+}
+
+.container{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.slider{
+    width: 100%;
+    height: 3px;
+    background-color: $--red;
+
+    .thumb{
+        top: 50%;
+        transform: translateY(-50%);
+
+        width: 23px;
+        height: 23px;
+
+        background: radial-gradient(circle, $--white 10%, $--red 50%);
+        border-radius: 50%;
+
+        cursor: pointer;
+    }
+}
+
+.fixed{
+    overflow-y: hidden;
+}
+
+@media screen and (max-width: 1200px) {
+    .container{
+        margin-left: 80px;
+        margin-right: 80px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .container{
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .container{
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+}
+@media screen and (max-width: 700px) {
+    .container{
+        margin: 0;
+    }
+}

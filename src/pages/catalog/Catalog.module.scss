@@ -1,0 +1,275 @@
+@import "/src//styles//variables.scss";
+
+.items{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    &__container{
+        width: 100%;
+        &_products{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        &_pagination{
+            display: flex;
+            justify-content: center;
+
+            margin-top: 40px;
+            margin-bottom: 20px;
+
+            button{
+                width: 20px;
+                height: 22px;
+                font-weight: 600;
+
+                margin: 0 5px;
+
+                border: none;
+
+                background-color: $--red;
+                color: $--white;
+
+                cursor: pointer;
+            }
+        }
+    }
+    &__filter{
+        background: var(--White, #FFF);
+        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.10);
+
+        width: 300px;
+        max-width: 300px;
+        min-width: 300px;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        font-weight: 600;
+
+        &_price{
+            margin: 0 15px;
+            &_holder{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                margin-top: 20px;
+
+                cursor: pointer;
+
+                img{
+                    transition: 0.3s;
+                }
+            }
+            &_options{
+                display: none;
+                flex-direction: column;
+
+                form{
+                    margin-top: 10px;
+                    margin-bottom: 20px;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    div{
+                        width: 11px;
+                        height: 2px;
+                        background-color: $--red;
+                    }
+
+                    input{
+                        width: 80px;
+                        height: 30px;
+
+                        padding-left: 10px;
+
+                        border-radius: 0;
+                        border-color: $--red;
+                    }
+                }
+            }
+        }
+
+        &_categories{
+            margin: 20px 15px;
+            &_holder{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                cursor: pointer;
+
+                img{
+                    transition: 0.3s;
+                }
+            }
+            &_category{
+                display: none;
+                flex-direction: column;
+
+                margin-top: 10px;
+                &_container{
+                    display: flex;
+
+                    input{
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.functions{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+    margin-bottom: 30px;
+    
+    &__info{
+        display: flex;
+        &_category{
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    &__container{
+        display: flex;
+        align-items: center;
+
+        gap: 50px;
+
+        &_productsCount{
+            font-weight: 700;
+            color: $--red;
+        }
+
+        &_sort{
+            position: relative;
+
+            width: 240px;
+            height: 40px;
+
+            background: var(--White, #FFF);
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &_holder{
+                width: 80%;
+
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                cursor: pointer;
+                div{
+                    font-weight: 600;
+                }
+
+                img{
+                    transition: 0.3s;
+                }
+            }
+            &_options{
+                position: absolute;
+                bottom: -75px;
+
+                width: 100%;
+                height: 80px;
+
+                z-index: 998;
+
+                display: none;
+                flex-direction: column;
+                justify-content: center;
+
+                background-color: var(--White, #FFF);
+
+                &_option{
+                    display: flex;
+                    align-items: center;
+
+                    height: 26px;
+                    
+
+                    font-size: 16px;
+                    font-weight: 600;
+
+                    cursor: pointer;
+                }
+                &_option:hover{
+                    background-color: rgb(201, 200, 200);
+                }
+            }
+        }
+        &_dFilter{
+            width: 240px;
+            height: 40px;
+
+            background: var(--White, #FFF);
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &_holder{
+                width: 80%;
+
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                cursor: pointer;
+
+                div{
+                    font-weight: 600;
+                }
+                img{
+                    transition: 0.3s;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.active{
+    display: flex;
+}
+
+.animation{
+    transition: 0.3s;
+    transform: rotate(-180deg);
+}
+
+
+@media screen and (max-width: 1350px) {
+    .items{
+        flex-direction: column-reverse;
+        align-items: center;
+
+        &__filter{
+            margin-bottom: 30px;
+        }
+    }
+
+    .functions{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &__container{
+            flex-direction: column;
+        }
+    }
+}
